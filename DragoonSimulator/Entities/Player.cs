@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using DragoonSimulator.Formulas;
 using DragoonSimulator.Skills;
 
@@ -69,8 +68,7 @@ namespace DragoonSimulator.Entities
             }
             if (animationLocked)
             {
-                Console.WriteLine("Warning! GCD is clipped in this rotation!");
-                return 0;
+                throw new Exception("Warning! GCD is clipped in this rotation! Are you using an off-gcd skill too early?");
             }
 
             if (weaponSkill == WeaponSkills.SharperFangAndClaw)
@@ -142,7 +140,7 @@ namespace DragoonSimulator.Entities
         {
             if (GcdDuration <= 0)
             {
-                Console.WriteLine("Warning! Using off-gcd ability when GCD is available!");
+                throw new Exception($"Warning! Using off-gcd ability { spell } when GCD is available! Remaining cooldown on { spell }: { Cooldowns[spell]}");
             }
 
             if (Cooldowns.ContainsKey(spell) || QueuedEffects.ContainsKey(Skills.StatusEffects.AnimationLocked))
@@ -203,7 +201,7 @@ namespace DragoonSimulator.Entities
         {
             if (GcdDuration <= 0)
             {
-                Console.WriteLine("Warning! Using off-gcd ability when GCD is available!");
+                throw new Exception($"Warning! Using off-gcd ability { spell } when GCD is available! Remaining cooldown on { spell }: { Cooldowns[spell]}");
             }
 
             if (Cooldowns.ContainsKey(spell) || QueuedEffects.ContainsKey(Skills.StatusEffects.AnimationLocked))
