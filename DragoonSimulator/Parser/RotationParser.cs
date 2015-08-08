@@ -7,11 +7,22 @@ namespace DragoonSimulator.Parser
     public class RotationParser
     {
         private static readonly string[] LoadedRotation = File.ReadAllLines("Rotation.txt");
+        public static bool CompletedOpener;
         private static int _currentAbility;
+        private const string OpenerMarker = "--OPENER";
+        private const string RotationMarker = "--ROTATION";
 
         public static Enum SelectFirstAbility()
         {
-            _currentAbility = 0;
+            if (!CompletedOpener)
+            {
+                _currentAbility = Array.IndexOf(LoadedRotation, OpenerMarker) + 1;
+            }
+            else
+            {
+                _currentAbility = Array.IndexOf(LoadedRotation, RotationMarker) + 1;
+            }
+            
             return SelectNextAbility();
         }
 
@@ -19,10 +30,20 @@ namespace DragoonSimulator.Parser
         {
             var selectedSkill = ParseAbility(LoadedRotation[_currentAbility]);
 
+            if (_currentAbility >= Array.IndexOf(LoadedRotation, RotationMarker))
+            {
+                CompletedOpener = true;
+            }
+
             _currentAbility++;
+            if (_currentAbility == Array.IndexOf(LoadedRotation, RotationMarker))
+            {
+                _currentAbility++;
+            }
+
             if (_currentAbility == LoadedRotation.Length)
             {
-                _currentAbility = 0;
+                _currentAbility = Array.IndexOf(LoadedRotation, RotationMarker) + 1;
             }
 
             return selectedSkill;

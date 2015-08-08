@@ -21,10 +21,14 @@ namespace DragoonSimulator
 
             var totalDamageDealt = 0;
             var totalEncounterDuration = 0;
+            var totalOpenerDamageDealt = 0;
+            var totalOpenerDuration = 0;
 
             for (var i = 0; i < NumTrials; i++)
             {
                 _currentGameTime = 0;
+                RotationParser.CompletedOpener = false;
+                var savedOpenerDamageDealt = false;
 
                 var actors = new List<Actor>();
                 var player = PlayerFactory.CreatePlayer();
@@ -36,6 +40,13 @@ namespace DragoonSimulator
 
                 while (_currentGameTime < EncounterLengthMs)
                 {
+                    if (!savedOpenerDamageDealt && RotationParser.CompletedOpener)
+                    {
+                        totalOpenerDamageDealt += (int)strikingDummy.DamageTaken;
+                        totalOpenerDuration += (int)TimeSpan.FromMilliseconds(_currentGameTime).TotalSeconds;
+                        savedOpenerDamageDealt = true;
+                    }
+
                     strikingDummy.DamageTaken += player.AutoAttack(strikingDummy);
 
                     if (selectedAbility is WeaponSkills)
@@ -80,6 +91,7 @@ namespace DragoonSimulator
             }
 
             Console.WriteLine($"Total Trials: { NumTrials }");
+            Console.WriteLine($"Average Opener DPS: { totalOpenerDamageDealt / totalOpenerDuration }");
             Console.WriteLine($"Average Encounter DPS: { totalDamageDealt / totalEncounterDuration }");
             Console.WriteLine($"Max Parse: { maxParse }");
             Console.WriteLine($"Min Parse: { minParse }");
