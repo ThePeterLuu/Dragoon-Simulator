@@ -10,7 +10,7 @@ namespace DragoonSimulator
     public class Game
     {
         private static long _currentGameTime;
-        private static readonly int EncounterLengthMs = (int)TimeSpan.FromMinutes(4).TotalMilliseconds;
+        private static readonly int EncounterLengthMs = (int)TimeSpan.FromMinutes(3).TotalMilliseconds;
         private const int NumTrials = 50;
         public static Random Rng = new Random();
         

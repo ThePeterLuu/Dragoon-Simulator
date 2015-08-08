@@ -67,17 +67,17 @@ namespace DragoonSimulator.Skills
 
         public static void QueueEffect(Player player, StrikingDummy strikingDummy, WeaponSkills weaponSkill)
         {
-            player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.33).TotalMilliseconds });
+            player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.33).TotalMilliseconds, Target = player });
 
             switch (weaponSkill)
             {
                 case WeaponSkills.HeavyThrust:
-                    player.QueuedEffects.Add(StatusEffects.HeavyThrust, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.5).TotalMilliseconds });
+                    player.QueuedEffects.Add(StatusEffects.HeavyThrust, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.5).TotalMilliseconds, Target = player });
                     break;
                 case WeaponSkills.Disembowel:
                     if (player.LastSkills.Peek() == WeaponSkills.ImpulseDrive)
                     {
-                        strikingDummy.QueuedEffects.Add(StatusEffects.Disembowel, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.75).TotalMilliseconds });
+                        strikingDummy.QueuedEffects.Add(StatusEffects.Disembowel, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.75).TotalMilliseconds, Target = strikingDummy });
                     }
                     break;
                 case WeaponSkills.ChaosThrust:
