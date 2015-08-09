@@ -1,4 +1,6 @@
-﻿using DragoonSimulator.Entities;
+﻿using System;
+using System.Configuration;
+using DragoonSimulator.Entities;
 namespace DragoonSimulator.Factories
 {
     public class PlayerFactory
@@ -14,29 +16,23 @@ namespace DragoonSimulator.Factories
 
         private static void AssignStats(Player player) 
         {
-            player.Str = 935;
-            player.Dex = 219;
-            player.Vit = 696;
-            player.Int = 97;
-            player.Mnd = 144;
-            player.Pie = 165;
+            player.Str = Convert.ToDouble(ConfigurationManager.AppSettings["STR"]);
         }
 
         private static void AssignOffensiveProperties(Player player)
         {
-            player.Acc = 612;
-            player.Crt = 594;
-            player.Det = 461;
-            player.Sks = 599;
+            player.Crt = Convert.ToDouble(ConfigurationManager.AppSettings["CRT"]);
+            player.Det = Convert.ToDouble(ConfigurationManager.AppSettings["DET"]);
+            player.Sks = Convert.ToDouble(ConfigurationManager.AppSettings["SKS"]);
         }
 
         private static void AssignWeapon(Player player)
         {
             player.Weapon = new Weapon
             {
-                WeaponDamage = 74,
-                AutoAttack = 71.04,
-                Delay = 2.88
+                WeaponDamage = Convert.ToDouble(ConfigurationManager.AppSettings["WD"]),
+                AutoAttack = Convert.ToDouble(ConfigurationManager.AppSettings["AA"]),
+                Delay = Convert.ToDouble(ConfigurationManager.AppSettings["AA_DELAY"])
             };
         }
     }

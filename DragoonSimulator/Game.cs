@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using DragoonSimulator.Entities;
 using DragoonSimulator.Factories;
 using DragoonSimulator.Parser;
@@ -11,7 +12,7 @@ namespace DragoonSimulator
     {
         private static long _currentGameTime;
         private static readonly int EncounterLengthMs = (int)TimeSpan.FromSeconds(191).TotalMilliseconds;
-        private const int NumTrials = 100;
+        private static readonly int NumTrials = Convert.ToInt32(ConfigurationManager.AppSettings["NumTrials"]);
         public static Random Rng = new Random();
         public static int CurrentTrial;
         
