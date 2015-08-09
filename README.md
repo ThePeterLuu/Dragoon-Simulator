@@ -1,4 +1,4 @@
-﻿This tool can be used to determine the difference between gear sets and to experimentally validate rotations.
+This tool can be used to determine the difference between gear sets and to experimentally validate rotations.
 
 Settings are configured in the DragoonSimulator.exe.config file and are fairly self-explanatory.
 
