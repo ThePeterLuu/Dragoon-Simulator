@@ -16,7 +16,7 @@ namespace DragoonSimulator.Factories
         {
             player.Str = 935;
             player.Dex = 219;
-            player.Vit = 684;
+            player.Vit = 696;
             player.Int = 97;
             player.Mnd = 144;
             player.Pie = 165;
@@ -24,10 +24,10 @@ namespace DragoonSimulator.Factories
 
         private static void AssignOffensiveProperties(Player player)
         {
-            player.Acc = 604;
+            player.Acc = 612;
             player.Crt = 594;
             player.Det = 461;
-            player.Sks = 578;
+            player.Sks = 599;
         }
 
         private static void AssignWeapon(Player player)

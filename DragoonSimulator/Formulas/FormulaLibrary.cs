@@ -14,7 +14,7 @@
 
         public static double SkillSpeedMultiplier(double sks)
         {
-            return (1 + (sks - 354) * 0.0000852);
+            return (1 + (sks - 354) * 0.0000724);
         }
 
         public static double Gcd(double sks)

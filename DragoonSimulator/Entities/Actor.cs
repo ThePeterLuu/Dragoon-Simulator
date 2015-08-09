@@ -32,9 +32,21 @@ namespace DragoonSimulator.Entities
             if (StatusEffects.ContainsKey(Skills.StatusEffects.BloodOfTheDragon) &&
                 StatusEffects[Skills.StatusEffects.BloodOfTheDragon] - 1 <= 0)
             {
+                if (Game.CurrentTrial == 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine($"{ Skills.StatusEffects.BloodOfTheDragon } has fallen off!");
+                }
+                
                 StatusEffects.Remove(Skills.StatusEffects.BloodOfTheDragon);
                 if (StatusEffects.ContainsKey(Skills.StatusEffects.SharperFangAndClaw))
                 {
+                    if (Game.CurrentTrial == 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine($"{Skills.StatusEffects.SharperFangAndClaw} has fallen off!");
+                    }
+
                     StatusEffects.Remove(Skills.StatusEffects.SharperFangAndClaw);
                 }
             }
@@ -44,6 +56,12 @@ namespace DragoonSimulator.Entities
                 StatusEffects[effect.Key] = effect.Value - 1;
                 if (StatusEffects[effect.Key] <= 0)
                 {
+                    if (Game.CurrentTrial == 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine($"{effect.Key} has fallen off!");
+                    }
+
                     StatusEffects.Remove(effect.Key);
                 }
             }
@@ -104,12 +122,23 @@ namespace DragoonSimulator.Entities
                         damage *= FormulaLibrary.CritDmg(dotEffect.Crt);
                     }
 
-                    dotEffect.Target.DamageTaken += damage;
+                    if (Game.CurrentTrial == 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"{dot.Key} ticks for {(long)damage}!");
+                    }
+
+                    dotEffect.Target.DamageTaken += (long)damage;
                 }
 
                 dotEffect.Duration--;
                 if (dotEffect.Duration <= 0)
                 {
+                    if (Game.CurrentTrial == 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine($"{dot.Key} has fallen off!");
+                    }
                     DamageOverTimeEffects.Remove(dot.Key);
                 }
                 else
