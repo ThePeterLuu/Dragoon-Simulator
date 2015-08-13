@@ -32,20 +32,14 @@ namespace DragoonSimulator.Entities
             if (StatusEffects.ContainsKey(Skills.StatusEffects.BloodOfTheDragon) &&
                 StatusEffects[Skills.StatusEffects.BloodOfTheDragon] - 1 <= 0)
             {
-                if (Game.CurrentTrial == 0)
-                {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine($"{ Skills.StatusEffects.BloodOfTheDragon } has fallen off!");
-                }
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine($"{ Skills.StatusEffects.BloodOfTheDragon } has fallen off!");
                 
                 StatusEffects.Remove(Skills.StatusEffects.BloodOfTheDragon);
                 if (StatusEffects.ContainsKey(Skills.StatusEffects.SharperFangAndClaw))
                 {
-                    if (Game.CurrentTrial == 0)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine($"{Skills.StatusEffects.SharperFangAndClaw} has fallen off!");
-                    }
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine($"{Skills.StatusEffects.SharperFangAndClaw} has fallen off!");
 
                     StatusEffects.Remove(Skills.StatusEffects.SharperFangAndClaw);
                 }
@@ -56,11 +50,8 @@ namespace DragoonSimulator.Entities
                 StatusEffects[effect.Key] = effect.Value - 1;
                 if (StatusEffects[effect.Key] <= 0)
                 {
-                    if (Game.CurrentTrial == 0)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine($"{effect.Key} has fallen off!");
-                    }
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine($"{effect.Key} has fallen off!");
 
                     StatusEffects.Remove(effect.Key);
                 }
@@ -116,29 +107,21 @@ namespace DragoonSimulator.Entities
                 {
                     var damage = FormulaLibrary.WeaponSkills(dotEffect.Potency, dotEffect.WeaponDamage, dotEffect.Str, dotEffect.Det, dotEffect.Multiplier);
 
-                    // Crit
-                    if (Game.Rng.NextDouble() < dotEffect.CritChance)
-                    {
-                        damage *= FormulaLibrary.CritDmg(dotEffect.Crt);
-                    }
+                    damage = (damage * dotEffect.CritChance * FormulaLibrary.CritDmg(dotEffect.Crt)) +
+                             (damage * (1 - dotEffect.CritChance));
 
-                    if (Game.CurrentTrial == 0)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine($"{dot.Key} ticks for {(long)damage}!");
-                    }
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"{dot.Key} ticks for {(long)damage}!");
 
-                    dotEffect.Target.DamageTaken += (long)damage;
+                    dotEffect.Target.DamageTaken += damage;
                 }
 
                 dotEffect.Duration--;
                 if (dotEffect.Duration <= 0)
                 {
-                    if (Game.CurrentTrial == 0)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine($"{dot.Key} has fallen off!");
-                    }
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine($"{dot.Key} has fallen off!");
+
                     DamageOverTimeEffects.Remove(dot.Key);
                 }
                 else

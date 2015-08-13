@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using DragoonSimulator.Entities;
 using DragoonSimulator.Factories;
 using DragoonSimulator.Parser;
@@ -12,123 +11,70 @@ namespace DragoonSimulator
     {
         private static long _currentGameTime;
         private static readonly int EncounterLengthMs = (int)TimeSpan.FromSeconds(191).TotalMilliseconds;
-        private static readonly int NumTrials = Convert.ToInt32(ConfigurationManager.AppSettings["NumTrials"]);
-        public static Random Rng = new Random();
-        public static int CurrentTrial;
         
         public static void Main()
         {
             try
             {
-                var maxParse = int.MinValue;
-                var minParse = int.MaxValue;
+                var actors = new List<Actor>();
+                var player = PlayerFactory.CreatePlayer();
+                var strikingDummy = StrikingDummyFactory.CreateStrikingDummy();
+                actors.Add(player);
+                actors.Add(strikingDummy);
 
-                var totalDamageDealt = 0;
-                var totalEncounterDuration = 0;
-                var totalOpenerDamageDealt = 0;
-                var totalOpenerDuration = 0;
+                var selectedAbility = RotationParser.SelectFirstAbility();
 
-                for (var i = 0; i < NumTrials; i++)
+                while (_currentGameTime < EncounterLengthMs)
                 {
-                    CurrentTrial = i;
-                    _currentGameTime = 0;
-                    RotationParser.CompletedOpener = false;
-                    var savedOpenerDamageDealt = false;
 
-                    var actors = new List<Actor>();
-                    var player = PlayerFactory.CreatePlayer();
-                    var strikingDummy = StrikingDummyFactory.CreateStrikingDummy();
-                    actors.Add(player);
-                    actors.Add(strikingDummy);
+                    strikingDummy.DamageTaken += player.AutoAttack(strikingDummy);
 
-                    var selectedAbility = RotationParser.SelectFirstAbility();
-
-                    while (_currentGameTime < EncounterLengthMs)
+                    if (selectedAbility is WeaponSkills)
                     {
-
-                        if (!savedOpenerDamageDealt && RotationParser.CompletedOpener)
+                        var skillDamage = player.Attack(strikingDummy, (WeaponSkills) selectedAbility);
+                        if (skillDamage > 0)
                         {
-                            totalOpenerDamageDealt += (int) strikingDummy.DamageTaken;
-                            totalOpenerDuration += (int) TimeSpan.FromMilliseconds(_currentGameTime).TotalSeconds;
-                            savedOpenerDamageDealt = true;
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine(
+                                $"T: {FormatTimespan(TimeSpan.FromMilliseconds(GetCurrentGameTime()))} | Used {selectedAbility} for {skillDamage} damage!");
+
+                            strikingDummy.DamageTaken += skillDamage;
+                            selectedAbility = RotationParser.SelectNextAbility();
                         }
-
-                        strikingDummy.DamageTaken += player.AutoAttack(strikingDummy);
-
-                        if (selectedAbility is WeaponSkills)
+                    }
+                    if (selectedAbility is Spells)
+                    {
+                        if (SpellLibrary.IsDamageSpell((Spells) selectedAbility))
                         {
-                            var skillDamage = player.Attack(strikingDummy, (WeaponSkills) selectedAbility);
-                            if (skillDamage > 0)
+                            var spellDamage = player.UseDamageSpell(strikingDummy, (Spells) selectedAbility);
+                            if (spellDamage > 0)
                             {
-                                if (i == 0)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Green;
-                                    Console.WriteLine(
-                                        $"T: {FormatTimespan(TimeSpan.FromMilliseconds(GetCurrentGameTime()))} | Used {selectedAbility} for {skillDamage} damage!");
-                                }
+                                Console.ForegroundColor = ConsoleColor.Cyan;
+                                Console.WriteLine($"Used {selectedAbility} for {spellDamage} damage!");
 
-                                strikingDummy.DamageTaken += skillDamage;
+                                strikingDummy.DamageTaken += spellDamage;
                                 selectedAbility = RotationParser.SelectNextAbility();
                             }
                         }
-                        if (selectedAbility is Spells)
+                        if (SpellLibrary.IsBuffSpell((Spells) selectedAbility))
                         {
-                            if (SpellLibrary.IsDamageSpell((Spells) selectedAbility))
+                            var castSuccessfully = player.UseBuffSpell(strikingDummy, (Spells) selectedAbility);
+                            if (castSuccessfully)
                             {
-                                var spellDamage = player.UseDamageSpell(strikingDummy, (Spells) selectedAbility);
-                                if (spellDamage > 0)
-                                {
-                                    if (i == 0)
-                                    {
-                                        Console.ForegroundColor = ConsoleColor.Cyan;
-                                        Console.WriteLine($"Used {selectedAbility} for {spellDamage} damage!");
-                                    }
+                                Console.ForegroundColor = ConsoleColor.Cyan;
+                                Console.WriteLine($"Used {selectedAbility}!");
 
-                                    strikingDummy.DamageTaken += spellDamage;
-                                    selectedAbility = RotationParser.SelectNextAbility();
-                                }
-                            }
-                            if (SpellLibrary.IsBuffSpell((Spells) selectedAbility))
-                            {
-                                var castSuccessfully = player.UseBuffSpell(strikingDummy, (Spells) selectedAbility);
-                                if (castSuccessfully)
-                                {
-                                    if (i == 0)
-                                    {
-                                        Console.ForegroundColor = ConsoleColor.Cyan;
-                                        Console.WriteLine($"Used {selectedAbility}!");
-                                    }
-
-                                    selectedAbility = RotationParser.SelectNextAbility();
-                                }
+                                selectedAbility = RotationParser.SelectNextAbility();
                             }
                         }
-
-                        IncrementTimers(actors);
                     }
 
-                    totalDamageDealt += (int) strikingDummy.DamageTaken;
-                    totalEncounterDuration += (int) TimeSpan.FromMilliseconds(_currentGameTime).TotalSeconds;
-
-                    var encDps =
-                        (int) (strikingDummy.DamageTaken / TimeSpan.FromMilliseconds(_currentGameTime).TotalSeconds);
-                    maxParse = Math.Max(encDps, maxParse);
-                    minParse = Math.Min(encDps, minParse);
-
-                    if (i == 0)
-                    {
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.Write($"Running other {NumTrials - 1} trials ... please wait.");
-                    }
+                    IncrementTimers(actors);
                 }
 
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine();
-                Console.WriteLine($"Total Trials: {NumTrials}");
-                Console.WriteLine($"Average Opener DPS: {totalOpenerDamageDealt / totalOpenerDuration}");
-                Console.WriteLine($"Average Encounter DPS: {totalDamageDealt / totalEncounterDuration}");
-                Console.WriteLine($"Max Parse: {maxParse}");
-                Console.WriteLine($"Min Parse: {minParse}");
+                Console.WriteLine($"Average Encounter DPS: {strikingDummy.DamageTaken / TimeSpan.FromMilliseconds(EncounterLengthMs).TotalSeconds}");
                 Console.ReadKey();
             }
             catch (Exception e)

@@ -143,20 +143,16 @@ namespace DragoonSimulator.Skills
         {
             if (!(actor.StatusEffects.ContainsKey(statusEffect)))
             {
-                if (Game.CurrentTrial == 0)
-                {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine($"{statusEffect} applied!");
-                }
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine($"{statusEffect} applied!");
+
                 actor.StatusEffects.Add(statusEffect, (long)TimeSpan.FromSeconds(durationSeconds).TotalMilliseconds);
             }
             else
             {
-                if (Game.CurrentTrial == 0)
-                {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine($"{statusEffect} refreshed!");
-                }
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine($"{statusEffect} refreshed!");
+
                 actor.StatusEffects[statusEffect] = (long)TimeSpan.FromSeconds(durationSeconds).TotalMilliseconds;
             }
         }
@@ -165,20 +161,16 @@ namespace DragoonSimulator.Skills
         {
             if (!(target.DamageOverTimeEffects.ContainsKey(statusEffect)))
             {
-                if (Game.CurrentTrial == 0)
-                {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine($"{statusEffect} applied!");
-                }
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine($"{statusEffect} applied!");
+
                 target.DamageOverTimeEffects.Add(statusEffect, effectSnapshot);
             }
             else
             {
-                if (Game.CurrentTrial == 0)
-                {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine($"{statusEffect} refreshed!");
-                }
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine($"{statusEffect} refreshed!");
+
                 target.DamageOverTimeEffects[statusEffect] = effectSnapshot;
             }
         }

@@ -41,7 +41,7 @@ namespace DragoonSimulator.Entities
 
         // -- Methods
 
-        public int AutoAttack(StrikingDummy target)
+        public double AutoAttack(StrikingDummy target)
         {
             if (AutoAttackDuration > 0)
             {
@@ -50,16 +50,14 @@ namespace DragoonSimulator.Entities
 
             var damage = FormulaLibrary.AutoAttack(Weapon.AutoAttack, GetStrength(), Det, Weapon.Delay, CalculateMultiplier(target));
 
-            if (Game.Rng.NextDouble() < CalculateCritChance())
-            {
-                damage *= FormulaLibrary.CritDmg(Crt);
-            }
+            damage = (damage * CalculateCritChance() * FormulaLibrary.CritDmg(Crt)) +
+                             (damage * (1 - CalculateCritChance()));
 
             AutoAttackDuration = (int) TimeSpan.FromSeconds(Weapon.Delay).TotalMilliseconds;
-            return (int) damage;
+            return damage;
         }
 
-        public int Attack(StrikingDummy target, WeaponSkills weaponSkill)
+        public double Attack(StrikingDummy target, WeaponSkills weaponSkill)
         {
             var animationLocked = QueuedEffects.ContainsKey(Skills.StatusEffects.AnimationLocked);
             if (GcdDuration > 0)
@@ -111,32 +109,25 @@ namespace DragoonSimulator.Entities
                 }
             }
 
-            // Crit
-            var criticalHit = false;
-
             if (StatusEffects.ContainsKey(Skills.StatusEffects.LifeSurge))
             {
-                criticalHit = true;
+                damage *= FormulaLibrary.CritDmg(Crt);
                 StatusEffects.Remove(Skills.StatusEffects.LifeSurge);
             }
-            if (Game.Rng.NextDouble() < CalculateCritChance())
+            else
             {
-                criticalHit = true;
-            }
-
-            if (criticalHit)
-            {
-                damage *= FormulaLibrary.CritDmg(Crt);
+                damage = (damage * CalculateCritChance() * FormulaLibrary.CritDmg(Crt)) +
+                        (damage * (1 - CalculateCritChance()));
             }
 
             WeaponLibrary.QueueEffect(this, target, weaponSkill);
             GcdDuration = (int) TimeSpan.FromSeconds(FormulaLibrary.Gcd(Sks)).TotalMilliseconds;
             LastSkills.Push(weaponSkill);
 
-            return (int) damage;
+            return damage;
         }
 
-        public int UseDamageSpell(StrikingDummy target, Spells spell)
+        public double UseDamageSpell(StrikingDummy target, Spells spell)
         {
             if (GcdDuration <= 0)
             {
@@ -185,16 +176,13 @@ namespace DragoonSimulator.Entities
 
             var damage = FormulaLibrary.WeaponSkills(potency, Weapon.WeaponDamage, GetStrength(), Det, multiplier);
 
-            // Crit
-            if (Game.Rng.NextDouble() < CalculateCritChance())
-            {
-                damage *= FormulaLibrary.CritDmg(Crt);
-            }
+            damage = (damage * CalculateCritChance() * FormulaLibrary.CritDmg(Crt)) +
+                    (damage * (1 - CalculateCritChance()));
 
             SpellLibrary.QueueEffect(this, spell);
             Cooldowns.Add(spell, SpellLibrary.SpellCooldowns(spell));
 
-            return (int)damage;
+            return damage;
         }
 
         public bool UseBuffSpell(StrikingDummy target, Spells spell)
