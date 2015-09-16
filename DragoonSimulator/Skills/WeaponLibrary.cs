@@ -116,60 +116,72 @@ namespace DragoonSimulator.Skills
             }
         }
 
-        public static void ApplyEffect(Actor target, WeaponSkills weaponSkill, EffectSnapshot effectSnapshot = null)
+        public static void ApplyEffect(Actor target, WeaponSkills weaponSkill, bool verbose, EffectSnapshot effectSnapshot = null)
         {
             switch (weaponSkill)
             {
                 case WeaponSkills.HeavyThrust:
-                    ApplyEffect(target, StatusEffects.HeavyThrust, 24);
+                    ApplyEffect(target, StatusEffects.HeavyThrust, 24, verbose);
                     break;
                 case WeaponSkills.Disembowel:
-                    ApplyEffect(target, StatusEffects.Disembowel, 30);
+                    ApplyEffect(target, StatusEffects.Disembowel, 30, verbose);
                     break;
                 case WeaponSkills.ChaosThrust:
                     Debug.Assert(effectSnapshot != null, "effectSnapshot != null");
                     effectSnapshot.Duration = (long) TimeSpan.FromSeconds(30).TotalMilliseconds;
-                    ApplyDamageOverTime(target, StatusEffects.ChaosThrust, effectSnapshot);
+                    ApplyDamageOverTime(target, StatusEffects.ChaosThrust, effectSnapshot, verbose);
                     break;
                 case WeaponSkills.Phlebotomize:
                     Debug.Assert(effectSnapshot != null, "effectSnapshot != null");
                     effectSnapshot.Duration = (long)TimeSpan.FromSeconds(24).TotalMilliseconds;
-                    ApplyDamageOverTime(target, StatusEffects.Phlebotomize, effectSnapshot);
+                    ApplyDamageOverTime(target, StatusEffects.Phlebotomize, effectSnapshot, verbose);
                     break;
             }
         }
 
-        private static void ApplyEffect(Actor actor, StatusEffects statusEffect, long durationSeconds)
+        private static void ApplyEffect(Actor actor, StatusEffects statusEffect, long durationSeconds, bool verbose)
         {
             if (!(actor.StatusEffects.ContainsKey(statusEffect)))
             {
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine($"{statusEffect} applied!");
-
+                if (verbose)
+                {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine($"{statusEffect} applied!");
+                }
+                
                 actor.StatusEffects.Add(statusEffect, (long)TimeSpan.FromSeconds(durationSeconds).TotalMilliseconds);
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine($"{statusEffect} refreshed!");
+                if (verbose)
+                {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine($"{statusEffect} refreshed!");
+                }
 
                 actor.StatusEffects[statusEffect] = (long)TimeSpan.FromSeconds(durationSeconds).TotalMilliseconds;
             }
         }
 
-        private static void ApplyDamageOverTime(Actor target, StatusEffects statusEffect, EffectSnapshot effectSnapshot)
+        private static void ApplyDamageOverTime(Actor target, StatusEffects statusEffect, EffectSnapshot effectSnapshot, bool verbose)
         {
             if (!(target.DamageOverTimeEffects.ContainsKey(statusEffect)))
             {
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine($"{statusEffect} applied!");
+                if (verbose)
+                {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine($"{statusEffect} applied!");
+                }
 
                 target.DamageOverTimeEffects.Add(statusEffect, effectSnapshot);
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine($"{statusEffect} refreshed!");
+                if (verbose)
+                {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine($"{statusEffect} refreshed!");
+                }
 
                 target.DamageOverTimeEffects[statusEffect] = effectSnapshot;
             }

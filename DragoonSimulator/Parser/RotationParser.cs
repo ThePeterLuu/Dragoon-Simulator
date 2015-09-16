@@ -6,11 +6,16 @@ namespace DragoonSimulator.Parser
 {
     public class RotationParser
     {
-        private static readonly string[] LoadedRotation = File.ReadAllLines("Rotation.txt");
+        private static readonly string[] LoadedRotation = File.ReadAllLines("Rotation3.txt");
         public static bool CompletedOpener;
         private static int _currentAbility;
         private const string OpenerMarker = "--OPENER";
         private const string RotationMarker = "--ROTATION";
+
+        public static void Reset()
+        {
+            CompletedOpener = false;
+        }
 
         public static Enum SelectFirstAbility()
         {

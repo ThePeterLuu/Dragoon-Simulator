@@ -15,7 +15,7 @@ namespace DragoonSimulator.Entities
         public Dictionary<Spells, long> Cooldowns = new Dictionary<Spells, long>();
         public double DamageTaken { get; set; }
 
-        public void DecrementCooldownDuration()
+        public void DecrementCooldownDuration(bool verbose)
         {
             foreach (var cooldown in Cooldowns.ToList())
             {
@@ -27,20 +27,26 @@ namespace DragoonSimulator.Entities
             }
         }
 
-        public void DecrementStatusEffectDuration()
+        public void DecrementStatusEffectDuration(bool verbose)
         {
             if (StatusEffects.ContainsKey(Skills.StatusEffects.BloodOfTheDragon) &&
                 StatusEffects[Skills.StatusEffects.BloodOfTheDragon] - 1 <= 0)
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine($"{ Skills.StatusEffects.BloodOfTheDragon } has fallen off!");
+                if (verbose)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine($"{ Skills.StatusEffects.BloodOfTheDragon } has fallen off!");
+                }
                 
                 StatusEffects.Remove(Skills.StatusEffects.BloodOfTheDragon);
                 if (StatusEffects.ContainsKey(Skills.StatusEffects.SharperFangAndClaw))
                 {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine($"{Skills.StatusEffects.SharperFangAndClaw} has fallen off!");
-
+                    if (verbose)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine($"{Skills.StatusEffects.SharperFangAndClaw} has fallen off!");
+                    }
+                    
                     StatusEffects.Remove(Skills.StatusEffects.SharperFangAndClaw);
                 }
             }
@@ -50,15 +56,18 @@ namespace DragoonSimulator.Entities
                 StatusEffects[effect.Key] = effect.Value - 1;
                 if (StatusEffects[effect.Key] <= 0)
                 {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine($"{effect.Key} has fallen off!");
+                    if (verbose)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine($"{effect.Key} has fallen off!");
+                    }
 
                     StatusEffects.Remove(effect.Key);
                 }
             }
         }
 
-        public void DecrementQueuedEffectDuration()
+        public void DecrementQueuedEffectDuration(bool verbose)
         {
             foreach (var queuedEffect in QueuedEffects.ToList())
             {
@@ -77,7 +86,7 @@ namespace DragoonSimulator.Entities
                         Spells spell;
                         if (Enum.TryParse(effectName, true, out weaponSkill))
                         {
-                            WeaponLibrary.ApplyEffect(effect.Target, weaponSkill, queuedEffect.Value);
+                            WeaponLibrary.ApplyEffect(effect.Target, weaponSkill, verbose, queuedEffect.Value);
                         }
 
                         if (Enum.TryParse(effectName, true, out spell))
@@ -97,7 +106,7 @@ namespace DragoonSimulator.Entities
             }
         }
 
-        public void DecrementDamageOverTimeDuration()
+        public void DecrementDamageOverTimeDuration(bool verbose)
         {
             foreach (var dot in DamageOverTimeEffects.ToList())
             {
@@ -110,18 +119,24 @@ namespace DragoonSimulator.Entities
                     damage = (damage * dotEffect.CritChance * FormulaLibrary.CritDmg(dotEffect.Crt)) +
                              (damage * (1 - dotEffect.CritChance));
 
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"{dot.Key} ticks for {(long)damage}!");
-
+                    if (verbose)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"{dot.Key} ticks for {damage}!");
+                    }
+                    
                     dotEffect.Target.DamageTaken += damage;
                 }
 
                 dotEffect.Duration--;
                 if (dotEffect.Duration <= 0)
                 {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine($"{dot.Key} has fallen off!");
-
+                    if (verbose)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine($"{dot.Key} has fallen off!");
+                    }
+                    
                     DamageOverTimeEffects.Remove(dot.Key);
                 }
                 else
