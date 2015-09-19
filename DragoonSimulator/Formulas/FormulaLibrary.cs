@@ -80,9 +80,25 @@ namespace DragoonSimulator.Formulas
             {
                 return 10; // These two values are inverted due to some magic in how the game works.
             }
-            if (sks < 627)
+            if (sks < 632)
             {
                 return 12;
+            }
+            if (sks < 643)
+            {
+                return 14;
+            }
+            if (sks < 651)
+            {
+                return 13;
+            }
+            if (sks < 659)
+            {
+                return 15;
+            }
+            if (sks < 670)
+            {
+                return 16;
             }
 
             throw new Exception("Outside of accepted SKS range.");

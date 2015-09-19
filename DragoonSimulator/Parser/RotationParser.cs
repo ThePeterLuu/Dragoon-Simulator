@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.IO;
 using DragoonSimulator.Skills;
 
@@ -6,7 +7,7 @@ namespace DragoonSimulator.Parser
 {
     public class RotationParser
     {
-        private static readonly string[] LoadedRotation = File.ReadAllLines("Rotation3.txt");
+        private static readonly string[] LoadedRotation = File.ReadAllLines(ConfigurationManager.AppSettings["RotationFileName"]);
         public static bool CompletedOpener;
         private static int _currentAbility;
         private const string OpenerMarker = "--OPENER";
