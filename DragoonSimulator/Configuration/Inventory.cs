@@ -8,1576 +8,1072 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-public sealed class Inventory
+namespace DragoonSimulator.Configuration
 {
-    private static InventorySection _config;
-
-    static Inventory()
+    public sealed class Inventory
     {
-        _config = ((InventorySection)(System.Configuration.ConfigurationManager.GetSection("Inventory")));
-    }
+        private static InventorySection _config;
 
-    private Inventory()
-    {
-    }
-
-    public static InventorySection Config
-    {
-        get
+        static Inventory()
         {
-            return _config;
+            _config = ((InventorySection) (System.Configuration.ConfigurationManager.GetSection("Inventory")));
         }
-    }
-}
 
-public sealed partial class InventorySection : System.Configuration.ConfigurationSection
-{
-
-    [System.Configuration.ConfigurationProperty("MainHand")]
-    [System.Configuration.ConfigurationCollection(typeof(MainHandElementCollection.ItemElement), AddItemName = "item")]
-    public MainHandElementCollection MainHand
-    {
-        get
+        private Inventory()
         {
-            return ((MainHandElementCollection)(this["MainHand"]));
+        }
+
+        public static InventorySection Config
+        {
+            get { return _config; }
         }
     }
 
-    [System.Configuration.ConfigurationProperty("Head")]
-    [System.Configuration.ConfigurationCollection(typeof(HeadElementCollection.ItemElement), AddItemName = "item")]
-    public HeadElementCollection Head
-    {
-        get
-        {
-            return ((HeadElementCollection)(this["Head"]));
-        }
-    }
-
-    [System.Configuration.ConfigurationProperty("Body")]
-    [System.Configuration.ConfigurationCollection(typeof(BodyElementCollection.ItemElement), AddItemName = "item")]
-    public BodyElementCollection Body
-    {
-        get
-        {
-            return ((BodyElementCollection)(this["Body"]));
-        }
-    }
-
-    [System.Configuration.ConfigurationProperty("Hands")]
-    [System.Configuration.ConfigurationCollection(typeof(HandsElementCollection.ItemElement), AddItemName = "item")]
-    public HandsElementCollection Hands
-    {
-        get
-        {
-            return ((HandsElementCollection)(this["Hands"]));
-        }
-    }
-
-    [System.Configuration.ConfigurationProperty("Waist")]
-    [System.Configuration.ConfigurationCollection(typeof(WaistElementCollection.ItemElement), AddItemName = "item")]
-    public WaistElementCollection Waist
-    {
-        get
-        {
-            return ((WaistElementCollection)(this["Waist"]));
-        }
-    }
-
-    [System.Configuration.ConfigurationProperty("Legs")]
-    [System.Configuration.ConfigurationCollection(typeof(LegsElementCollection.ItemElement), AddItemName = "item")]
-    public LegsElementCollection Legs
-    {
-        get
-        {
-            return ((LegsElementCollection)(this["Legs"]));
-        }
-    }
-
-    [System.Configuration.ConfigurationProperty("Feet")]
-    [System.Configuration.ConfigurationCollection(typeof(FeetElementCollection.ItemElement), AddItemName = "item")]
-    public FeetElementCollection Feet
-    {
-        get
-        {
-            return ((FeetElementCollection)(this["Feet"]));
-        }
-    }
-
-    [System.Configuration.ConfigurationProperty("OffHand")]
-    public OffHandElement OffHand
-    {
-        get
-        {
-            return ((OffHandElement)(this["OffHand"]));
-        }
-    }
-
-    [System.Configuration.ConfigurationProperty("Neck")]
-    [System.Configuration.ConfigurationCollection(typeof(NeckElementCollection.ItemElement), AddItemName = "item")]
-    public NeckElementCollection Neck
-    {
-        get
-        {
-            return ((NeckElementCollection)(this["Neck"]));
-        }
-    }
-
-    [System.Configuration.ConfigurationProperty("Ears")]
-    [System.Configuration.ConfigurationCollection(typeof(EarsElementCollection.ItemElement), AddItemName = "item")]
-    public EarsElementCollection Ears
-    {
-        get
-        {
-            return ((EarsElementCollection)(this["Ears"]));
-        }
-    }
-
-    [System.Configuration.ConfigurationProperty("Wrists")]
-    [System.Configuration.ConfigurationCollection(typeof(WristsElementCollection.ItemElement), AddItemName = "item")]
-    public WristsElementCollection Wrists
-    {
-        get
-        {
-            return ((WristsElementCollection)(this["Wrists"]));
-        }
-    }
-
-    [System.Configuration.ConfigurationProperty("Rings")]
-    [System.Configuration.ConfigurationCollection(typeof(RingsElementCollection.ItemElement), AddItemName = "item")]
-    public RingsElementCollection Rings
-    {
-        get
-        {
-            return ((RingsElementCollection)(this["Rings"]));
-        }
-    }
-
-    [System.Configuration.ConfigurationProperty("Food")]
-    [System.Configuration.ConfigurationCollection(typeof(FoodElementCollection.ItemElement), AddItemName = "item")]
-    public FoodElementCollection Food
-    {
-        get
-        {
-            return ((FoodElementCollection)(this["Food"]));
-        }
-    }
-
-    public sealed partial class MainHandElementCollection : System.Configuration.ConfigurationElementCollection
+    public sealed partial class InventorySection : System.Configuration.ConfigurationSection
     {
 
-        public ItemElement this[int i]
+        [System.Configuration.ConfigurationProperty("MainHand")]
+        [System.Configuration.ConfigurationCollection(typeof (MainHandElementCollection.ItemElement),
+            AddItemName = "item")]
+        public MainHandElementCollection MainHand
         {
-            get
+            get { return ((MainHandElementCollection) (this["MainHand"])); }
+        }
+
+        [System.Configuration.ConfigurationProperty("Head")]
+        [System.Configuration.ConfigurationCollection(typeof (HeadElementCollection.ItemElement), AddItemName = "item")]
+        public HeadElementCollection Head
+        {
+            get { return ((HeadElementCollection) (this["Head"])); }
+        }
+
+        [System.Configuration.ConfigurationProperty("Body")]
+        [System.Configuration.ConfigurationCollection(typeof (BodyElementCollection.ItemElement), AddItemName = "item")]
+        public BodyElementCollection Body
+        {
+            get { return ((BodyElementCollection) (this["Body"])); }
+        }
+
+        [System.Configuration.ConfigurationProperty("Hands")]
+        [System.Configuration.ConfigurationCollection(typeof (HandsElementCollection.ItemElement), AddItemName = "item")
+        ]
+        public HandsElementCollection Hands
+        {
+            get { return ((HandsElementCollection) (this["Hands"])); }
+        }
+
+        [System.Configuration.ConfigurationProperty("Waist")]
+        [System.Configuration.ConfigurationCollection(typeof (WaistElementCollection.ItemElement), AddItemName = "item")
+        ]
+        public WaistElementCollection Waist
+        {
+            get { return ((WaistElementCollection) (this["Waist"])); }
+        }
+
+        [System.Configuration.ConfigurationProperty("Legs")]
+        [System.Configuration.ConfigurationCollection(typeof (LegsElementCollection.ItemElement), AddItemName = "item")]
+        public LegsElementCollection Legs
+        {
+            get { return ((LegsElementCollection) (this["Legs"])); }
+        }
+
+        [System.Configuration.ConfigurationProperty("Feet")]
+        [System.Configuration.ConfigurationCollection(typeof (FeetElementCollection.ItemElement), AddItemName = "item")]
+        public FeetElementCollection Feet
+        {
+            get { return ((FeetElementCollection) (this["Feet"])); }
+        }
+
+        [System.Configuration.ConfigurationProperty("OffHand")]
+        public OffHandElement OffHand
+        {
+            get { return ((OffHandElement) (this["OffHand"])); }
+        }
+
+        [System.Configuration.ConfigurationProperty("Neck")]
+        [System.Configuration.ConfigurationCollection(typeof (NeckElementCollection.ItemElement), AddItemName = "item")]
+        public NeckElementCollection Neck
+        {
+            get { return ((NeckElementCollection) (this["Neck"])); }
+        }
+
+        [System.Configuration.ConfigurationProperty("Ears")]
+        [System.Configuration.ConfigurationCollection(typeof (EarsElementCollection.ItemElement), AddItemName = "item")]
+        public EarsElementCollection Ears
+        {
+            get { return ((EarsElementCollection) (this["Ears"])); }
+        }
+
+        [System.Configuration.ConfigurationProperty("Wrists")]
+        [System.Configuration.ConfigurationCollection(typeof (WristsElementCollection.ItemElement), AddItemName = "item"
+            )]
+        public WristsElementCollection Wrists
+        {
+            get { return ((WristsElementCollection) (this["Wrists"])); }
+        }
+
+        [System.Configuration.ConfigurationProperty("LeftRing")]
+        [System.Configuration.ConfigurationCollection(typeof (LeftRingElementCollection.ItemElement),
+            AddItemName = "item")]
+        public LeftRingElementCollection LeftRing
+        {
+            get { return ((LeftRingElementCollection) (this["LeftRing"])); }
+        }
+
+        [System.Configuration.ConfigurationProperty("RightRing")]
+        [System.Configuration.ConfigurationCollection(typeof (RightRingElementCollection.ItemElement),
+            AddItemName = "item")]
+        public RightRingElementCollection RightRing
+        {
+            get { return ((RightRingElementCollection) (this["RightRing"])); }
+        }
+
+        [System.Configuration.ConfigurationProperty("Food")]
+        [System.Configuration.ConfigurationCollection(typeof (FoodElementCollection.ItemElement), AddItemName = "item")]
+        public FoodElementCollection Food
+        {
+            get { return ((FoodElementCollection) (this["Food"])); }
+        }
+
+        public sealed partial class MainHandElementCollection : System.Configuration.ConfigurationElementCollection
+        {
+
+            public ItemElement this[int i]
             {
-                return ((ItemElement)(this.BaseGet(i)));
+                get { return ((ItemElement) (this.BaseGet(i))); }
+            }
+
+            protected override System.Configuration.ConfigurationElement CreateNewElement()
+            {
+                return new ItemElement();
+            }
+
+            protected override object GetElementKey(System.Configuration.ConfigurationElement element)
+            {
+                return ((ItemElement) (element)).Name;
+            }
+
+            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+            {
+
+                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
+                public string Name
+                {
+                    get { return ((string) (this["name"])); }
+                    set { this["name"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("wd", IsRequired = true)]
+                public double Wd
+                {
+                    get { return ((double) (this["wd"])); }
+                    set { this["wd"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("aa", IsRequired = true)]
+                public double Aa
+                {
+                    get { return ((double) (this["aa"])); }
+                    set { this["aa"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("delay", IsRequired = true)]
+                public double Delay
+                {
+                    get { return ((double) (this["delay"])); }
+                    set { this["delay"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
+                public long Str
+                {
+                    get { return ((long) (this["str"])); }
+                    set { this["str"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
+                public long Acc
+                {
+                    get { return ((long) (this["acc"])); }
+                    set { this["acc"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
+                public long Crt
+                {
+                    get { return ((long) (this["crt"])); }
+                    set { this["crt"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
+                public long Det
+                {
+                    get { return ((long) (this["det"])); }
+                    set { this["det"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
+                public long Sks
+                {
+                    get { return ((long) (this["sks"])); }
+                    set { this["sks"] = value; }
+                }
             }
         }
 
-        protected override System.Configuration.ConfigurationElement CreateNewElement()
-        {
-            return new ItemElement();
-        }
-
-        protected override object GetElementKey(System.Configuration.ConfigurationElement element)
-        {
-            return ((ItemElement)(element)).Name;
-        }
-
-        public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+        public sealed partial class HeadElementCollection : System.Configuration.ConfigurationElementCollection
         {
 
-            [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-            public string Name
+            public ItemElement this[int i]
             {
-                get
-                {
-                    return ((string)(this["name"]));
-                }
-                set
-                {
-                    this["name"] = value;
-                }
+                get { return ((ItemElement) (this.BaseGet(i))); }
             }
 
-            [System.Configuration.ConfigurationProperty("wd", IsRequired = true)]
-            public double Wd
+            protected override System.Configuration.ConfigurationElement CreateNewElement()
             {
-                get
-                {
-                    return ((double)(this["wd"]));
-                }
-                set
-                {
-                    this["wd"] = value;
-                }
+                return new ItemElement();
             }
 
-            [System.Configuration.ConfigurationProperty("aa", IsRequired = true)]
-            public double Aa
+            protected override object GetElementKey(System.Configuration.ConfigurationElement element)
             {
-                get
-                {
-                    return ((double)(this["aa"]));
-                }
-                set
-                {
-                    this["aa"] = value;
-                }
+                return ((ItemElement) (element)).Name;
             }
 
-            [System.Configuration.ConfigurationProperty("delay", IsRequired = true)]
-            public double Delay
+            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
             {
-                get
-                {
-                    return ((double)(this["delay"]));
-                }
-                set
-                {
-                    this["delay"] = value;
-                }
-            }
 
-            [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-            public long Str
-            {
-                get
+                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
+                public string Name
                 {
-                    return ((long)(this["str"]));
+                    get { return ((string) (this["name"])); }
+                    set { this["name"] = value; }
                 }
-                set
-                {
-                    this["str"] = value;
-                }
-            }
 
-            [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-            public long Acc
-            {
-                get
+                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
+                public long Str
                 {
-                    return ((long)(this["acc"]));
+                    get { return ((long) (this["str"])); }
+                    set { this["str"] = value; }
                 }
-                set
-                {
-                    this["acc"] = value;
-                }
-            }
 
-            [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-            public long Crt
-            {
-                get
+                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
+                public long Acc
                 {
-                    return ((long)(this["crt"]));
+                    get { return ((long) (this["acc"])); }
+                    set { this["acc"] = value; }
                 }
-                set
-                {
-                    this["crt"] = value;
-                }
-            }
 
-            [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-            public long Det
-            {
-                get
+                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
+                public long Crt
                 {
-                    return ((long)(this["det"]));
+                    get { return ((long) (this["crt"])); }
+                    set { this["crt"] = value; }
                 }
-                set
-                {
-                    this["det"] = value;
-                }
-            }
 
-            [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-            public long Sks
-            {
-                get
+                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
+                public long Det
                 {
-                    return ((long)(this["sks"]));
+                    get { return ((long) (this["det"])); }
+                    set { this["det"] = value; }
                 }
-                set
+
+                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
+                public long Sks
                 {
-                    this["sks"] = value;
+                    get { return ((long) (this["sks"])); }
+                    set { this["sks"] = value; }
                 }
             }
         }
-    }
 
-    public sealed partial class HeadElementCollection : System.Configuration.ConfigurationElementCollection
-    {
-
-        public ItemElement this[int i]
+        public sealed partial class BodyElementCollection : System.Configuration.ConfigurationElementCollection
         {
-            get
+
+            public ItemElement this[int i]
             {
-                return ((ItemElement)(this.BaseGet(i)));
+                get { return ((ItemElement) (this.BaseGet(i))); }
+            }
+
+            protected override System.Configuration.ConfigurationElement CreateNewElement()
+            {
+                return new ItemElement();
+            }
+
+            protected override object GetElementKey(System.Configuration.ConfigurationElement element)
+            {
+                return ((ItemElement) (element)).Name;
+            }
+
+            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+            {
+
+                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
+                public string Name
+                {
+                    get { return ((string) (this["name"])); }
+                    set { this["name"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
+                public long Str
+                {
+                    get { return ((long) (this["str"])); }
+                    set { this["str"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
+                public long Acc
+                {
+                    get { return ((long) (this["acc"])); }
+                    set { this["acc"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
+                public long Crt
+                {
+                    get { return ((long) (this["crt"])); }
+                    set { this["crt"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
+                public long Det
+                {
+                    get { return ((long) (this["det"])); }
+                    set { this["det"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
+                public long Sks
+                {
+                    get { return ((long) (this["sks"])); }
+                    set { this["sks"] = value; }
+                }
             }
         }
 
-        protected override System.Configuration.ConfigurationElement CreateNewElement()
-        {
-            return new ItemElement();
-        }
-
-        protected override object GetElementKey(System.Configuration.ConfigurationElement element)
-        {
-            return ((ItemElement)(element)).Name;
-        }
-
-        public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+        public sealed partial class HandsElementCollection : System.Configuration.ConfigurationElementCollection
         {
 
-            [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-            public string Name
+            public ItemElement this[int i]
             {
-                get
-                {
-                    return ((string)(this["name"]));
-                }
-                set
-                {
-                    this["name"] = value;
-                }
+                get { return ((ItemElement) (this.BaseGet(i))); }
             }
 
-            [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-            public long Str
+            protected override System.Configuration.ConfigurationElement CreateNewElement()
             {
-                get
-                {
-                    return ((long)(this["str"]));
-                }
-                set
-                {
-                    this["str"] = value;
-                }
+                return new ItemElement();
             }
 
-            [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-            public long Acc
+            protected override object GetElementKey(System.Configuration.ConfigurationElement element)
             {
-                get
-                {
-                    return ((long)(this["acc"]));
-                }
-                set
-                {
-                    this["acc"] = value;
-                }
+                return ((ItemElement) (element)).Name;
             }
 
-            [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-            public long Crt
+            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
             {
-                get
-                {
-                    return ((long)(this["crt"]));
-                }
-                set
-                {
-                    this["crt"] = value;
-                }
-            }
 
-            [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-            public long Det
-            {
-                get
+                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
+                public string Name
                 {
-                    return ((long)(this["det"]));
+                    get { return ((string) (this["name"])); }
+                    set { this["name"] = value; }
                 }
-                set
-                {
-                    this["det"] = value;
-                }
-            }
 
-            [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-            public long Sks
-            {
-                get
+                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
+                public long Str
                 {
-                    return ((long)(this["sks"]));
+                    get { return ((long) (this["str"])); }
+                    set { this["str"] = value; }
                 }
-                set
+
+                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
+                public long Acc
                 {
-                    this["sks"] = value;
+                    get { return ((long) (this["acc"])); }
+                    set { this["acc"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
+                public long Crt
+                {
+                    get { return ((long) (this["crt"])); }
+                    set { this["crt"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
+                public long Det
+                {
+                    get { return ((long) (this["det"])); }
+                    set { this["det"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
+                public long Sks
+                {
+                    get { return ((long) (this["sks"])); }
+                    set { this["sks"] = value; }
                 }
             }
         }
-    }
 
-    public sealed partial class BodyElementCollection : System.Configuration.ConfigurationElementCollection
-    {
-
-        public ItemElement this[int i]
+        public sealed partial class WaistElementCollection : System.Configuration.ConfigurationElementCollection
         {
-            get
+
+            public ItemElement this[int i]
             {
-                return ((ItemElement)(this.BaseGet(i)));
+                get { return ((ItemElement) (this.BaseGet(i))); }
+            }
+
+            protected override System.Configuration.ConfigurationElement CreateNewElement()
+            {
+                return new ItemElement();
+            }
+
+            protected override object GetElementKey(System.Configuration.ConfigurationElement element)
+            {
+                return ((ItemElement) (element)).Name;
+            }
+
+            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+            {
+
+                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
+                public string Name
+                {
+                    get { return ((string) (this["name"])); }
+                    set { this["name"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
+                public long Str
+                {
+                    get { return ((long) (this["str"])); }
+                    set { this["str"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
+                public long Acc
+                {
+                    get { return ((long) (this["acc"])); }
+                    set { this["acc"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
+                public long Crt
+                {
+                    get { return ((long) (this["crt"])); }
+                    set { this["crt"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
+                public long Det
+                {
+                    get { return ((long) (this["det"])); }
+                    set { this["det"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
+                public long Sks
+                {
+                    get { return ((long) (this["sks"])); }
+                    set { this["sks"] = value; }
+                }
             }
         }
 
-        protected override System.Configuration.ConfigurationElement CreateNewElement()
-        {
-            return new ItemElement();
-        }
-
-        protected override object GetElementKey(System.Configuration.ConfigurationElement element)
-        {
-            return ((ItemElement)(element)).Name;
-        }
-
-        public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+        public sealed partial class LegsElementCollection : System.Configuration.ConfigurationElementCollection
         {
 
-            [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-            public string Name
+            public ItemElement this[int i]
             {
-                get
-                {
-                    return ((string)(this["name"]));
-                }
-                set
-                {
-                    this["name"] = value;
-                }
+                get { return ((ItemElement) (this.BaseGet(i))); }
             }
 
-            [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-            public long Str
+            protected override System.Configuration.ConfigurationElement CreateNewElement()
             {
-                get
-                {
-                    return ((long)(this["str"]));
-                }
-                set
-                {
-                    this["str"] = value;
-                }
+                return new ItemElement();
             }
 
-            [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-            public long Acc
+            protected override object GetElementKey(System.Configuration.ConfigurationElement element)
             {
-                get
-                {
-                    return ((long)(this["acc"]));
-                }
-                set
-                {
-                    this["acc"] = value;
-                }
+                return ((ItemElement) (element)).Name;
             }
 
-            [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-            public long Crt
+            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
             {
-                get
-                {
-                    return ((long)(this["crt"]));
-                }
-                set
-                {
-                    this["crt"] = value;
-                }
-            }
 
-            [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-            public long Det
-            {
-                get
+                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
+                public string Name
                 {
-                    return ((long)(this["det"]));
+                    get { return ((string) (this["name"])); }
+                    set { this["name"] = value; }
                 }
-                set
-                {
-                    this["det"] = value;
-                }
-            }
 
-            [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-            public long Sks
-            {
-                get
+                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
+                public long Str
                 {
-                    return ((long)(this["sks"]));
+                    get { return ((long) (this["str"])); }
+                    set { this["str"] = value; }
                 }
-                set
+
+                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
+                public long Acc
                 {
-                    this["sks"] = value;
+                    get { return ((long) (this["acc"])); }
+                    set { this["acc"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
+                public long Crt
+                {
+                    get { return ((long) (this["crt"])); }
+                    set { this["crt"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
+                public long Det
+                {
+                    get { return ((long) (this["det"])); }
+                    set { this["det"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
+                public long Sks
+                {
+                    get { return ((long) (this["sks"])); }
+                    set { this["sks"] = value; }
                 }
             }
         }
-    }
 
-    public sealed partial class HandsElementCollection : System.Configuration.ConfigurationElementCollection
-    {
-
-        public ItemElement this[int i]
+        public sealed partial class FeetElementCollection : System.Configuration.ConfigurationElementCollection
         {
-            get
+
+            public ItemElement this[int i]
             {
-                return ((ItemElement)(this.BaseGet(i)));
+                get { return ((ItemElement) (this.BaseGet(i))); }
+            }
+
+            protected override System.Configuration.ConfigurationElement CreateNewElement()
+            {
+                return new ItemElement();
+            }
+
+            protected override object GetElementKey(System.Configuration.ConfigurationElement element)
+            {
+                return ((ItemElement) (element)).Name;
+            }
+
+            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+            {
+
+                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
+                public string Name
+                {
+                    get { return ((string) (this["name"])); }
+                    set { this["name"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
+                public long Str
+                {
+                    get { return ((long) (this["str"])); }
+                    set { this["str"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
+                public long Acc
+                {
+                    get { return ((long) (this["acc"])); }
+                    set { this["acc"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
+                public long Crt
+                {
+                    get { return ((long) (this["crt"])); }
+                    set { this["crt"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
+                public long Det
+                {
+                    get { return ((long) (this["det"])); }
+                    set { this["det"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
+                public long Sks
+                {
+                    get { return ((long) (this["sks"])); }
+                    set { this["sks"] = value; }
+                }
             }
         }
 
-        protected override System.Configuration.ConfigurationElement CreateNewElement()
-        {
-            return new ItemElement();
-        }
-
-        protected override object GetElementKey(System.Configuration.ConfigurationElement element)
-        {
-            return ((ItemElement)(element)).Name;
-        }
-
-        public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+        public sealed partial class OffHandElement : System.Configuration.ConfigurationElement
         {
 
-            [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-            public string Name
+            [System.Configuration.ConfigurationProperty("item")]
+            public ItemElement Item
             {
-                get
-                {
-                    return ((string)(this["name"]));
-                }
-                set
-                {
-                    this["name"] = value;
-                }
+                get { return ((ItemElement) (this["item"])); }
             }
 
-            [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-            public long Str
+            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
             {
-                get
-                {
-                    return ((long)(this["str"]));
-                }
-                set
-                {
-                    this["str"] = value;
-                }
-            }
 
-            [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-            public long Acc
-            {
-                get
+                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
+                public string Name
                 {
-                    return ((long)(this["acc"]));
+                    get { return ((string) (this["name"])); }
+                    set { this["name"] = value; }
                 }
-                set
-                {
-                    this["acc"] = value;
-                }
-            }
 
-            [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-            public long Crt
-            {
-                get
+                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
+                public long Str
                 {
-                    return ((long)(this["crt"]));
+                    get { return ((long) (this["str"])); }
+                    set { this["str"] = value; }
                 }
-                set
-                {
-                    this["crt"] = value;
-                }
-            }
 
-            [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-            public long Det
-            {
-                get
+                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
+                public long Acc
                 {
-                    return ((long)(this["det"]));
+                    get { return ((long) (this["acc"])); }
+                    set { this["acc"] = value; }
                 }
-                set
-                {
-                    this["det"] = value;
-                }
-            }
 
-            [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-            public long Sks
-            {
-                get
+                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
+                public long Crt
                 {
-                    return ((long)(this["sks"]));
+                    get { return ((long) (this["crt"])); }
+                    set { this["crt"] = value; }
                 }
-                set
+
+                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
+                public long Det
                 {
-                    this["sks"] = value;
+                    get { return ((long) (this["det"])); }
+                    set { this["det"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
+                public long Sks
+                {
+                    get { return ((long) (this["sks"])); }
+                    set { this["sks"] = value; }
                 }
             }
         }
-    }
 
-    public sealed partial class WaistElementCollection : System.Configuration.ConfigurationElementCollection
-    {
-
-        public ItemElement this[int i]
+        public sealed partial class NeckElementCollection : System.Configuration.ConfigurationElementCollection
         {
-            get
+
+            public ItemElement this[int i]
             {
-                return ((ItemElement)(this.BaseGet(i)));
+                get { return ((ItemElement) (this.BaseGet(i))); }
+            }
+
+            protected override System.Configuration.ConfigurationElement CreateNewElement()
+            {
+                return new ItemElement();
+            }
+
+            protected override object GetElementKey(System.Configuration.ConfigurationElement element)
+            {
+                return ((ItemElement) (element)).Name;
+            }
+
+            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+            {
+
+                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
+                public string Name
+                {
+                    get { return ((string) (this["name"])); }
+                    set { this["name"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
+                public long Str
+                {
+                    get { return ((long) (this["str"])); }
+                    set { this["str"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
+                public long Acc
+                {
+                    get { return ((long) (this["acc"])); }
+                    set { this["acc"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
+                public long Crt
+                {
+                    get { return ((long) (this["crt"])); }
+                    set { this["crt"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
+                public long Det
+                {
+                    get { return ((long) (this["det"])); }
+                    set { this["det"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
+                public long Sks
+                {
+                    get { return ((long) (this["sks"])); }
+                    set { this["sks"] = value; }
+                }
             }
         }
 
-        protected override System.Configuration.ConfigurationElement CreateNewElement()
-        {
-            return new ItemElement();
-        }
-
-        protected override object GetElementKey(System.Configuration.ConfigurationElement element)
-        {
-            return ((ItemElement)(element)).Name;
-        }
-
-        public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+        public sealed partial class EarsElementCollection : System.Configuration.ConfigurationElementCollection
         {
 
-            [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-            public string Name
+            public ItemElement this[int i]
             {
-                get
-                {
-                    return ((string)(this["name"]));
-                }
-                set
-                {
-                    this["name"] = value;
-                }
+                get { return ((ItemElement) (this.BaseGet(i))); }
             }
 
-            [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-            public long Str
+            protected override System.Configuration.ConfigurationElement CreateNewElement()
             {
-                get
-                {
-                    return ((long)(this["str"]));
-                }
-                set
-                {
-                    this["str"] = value;
-                }
+                return new ItemElement();
             }
 
-            [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-            public long Acc
+            protected override object GetElementKey(System.Configuration.ConfigurationElement element)
             {
-                get
-                {
-                    return ((long)(this["acc"]));
-                }
-                set
-                {
-                    this["acc"] = value;
-                }
+                return ((ItemElement) (element)).Name;
             }
 
-            [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-            public long Crt
+            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
             {
-                get
-                {
-                    return ((long)(this["crt"]));
-                }
-                set
-                {
-                    this["crt"] = value;
-                }
-            }
 
-            [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-            public long Det
-            {
-                get
+                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
+                public string Name
                 {
-                    return ((long)(this["det"]));
+                    get { return ((string) (this["name"])); }
+                    set { this["name"] = value; }
                 }
-                set
-                {
-                    this["det"] = value;
-                }
-            }
 
-            [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-            public long Sks
-            {
-                get
+                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
+                public long Str
                 {
-                    return ((long)(this["sks"]));
+                    get { return ((long) (this["str"])); }
+                    set { this["str"] = value; }
                 }
-                set
+
+                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
+                public long Acc
                 {
-                    this["sks"] = value;
+                    get { return ((long) (this["acc"])); }
+                    set { this["acc"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
+                public long Crt
+                {
+                    get { return ((long) (this["crt"])); }
+                    set { this["crt"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
+                public long Det
+                {
+                    get { return ((long) (this["det"])); }
+                    set { this["det"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
+                public long Sks
+                {
+                    get { return ((long) (this["sks"])); }
+                    set { this["sks"] = value; }
                 }
             }
         }
-    }
 
-    public sealed partial class LegsElementCollection : System.Configuration.ConfigurationElementCollection
-    {
-
-        public ItemElement this[int i]
+        public sealed partial class WristsElementCollection : System.Configuration.ConfigurationElementCollection
         {
-            get
+
+            public ItemElement this[int i]
             {
-                return ((ItemElement)(this.BaseGet(i)));
+                get { return ((ItemElement) (this.BaseGet(i))); }
+            }
+
+            protected override System.Configuration.ConfigurationElement CreateNewElement()
+            {
+                return new ItemElement();
+            }
+
+            protected override object GetElementKey(System.Configuration.ConfigurationElement element)
+            {
+                return ((ItemElement) (element)).Name;
+            }
+
+            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+            {
+
+                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
+                public string Name
+                {
+                    get { return ((string) (this["name"])); }
+                    set { this["name"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
+                public long Str
+                {
+                    get { return ((long) (this["str"])); }
+                    set { this["str"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
+                public long Acc
+                {
+                    get { return ((long) (this["acc"])); }
+                    set { this["acc"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
+                public long Crt
+                {
+                    get { return ((long) (this["crt"])); }
+                    set { this["crt"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
+                public long Det
+                {
+                    get { return ((long) (this["det"])); }
+                    set { this["det"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
+                public long Sks
+                {
+                    get { return ((long) (this["sks"])); }
+                    set { this["sks"] = value; }
+                }
             }
         }
 
-        protected override System.Configuration.ConfigurationElement CreateNewElement()
-        {
-            return new ItemElement();
-        }
-
-        protected override object GetElementKey(System.Configuration.ConfigurationElement element)
-        {
-            return ((ItemElement)(element)).Name;
-        }
-
-        public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+        public sealed partial class LeftRingElementCollection : System.Configuration.ConfigurationElementCollection
         {
 
-            [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-            public string Name
+            public ItemElement this[int i]
             {
-                get
-                {
-                    return ((string)(this["name"]));
-                }
-                set
-                {
-                    this["name"] = value;
-                }
+                get { return ((ItemElement) (this.BaseGet(i))); }
             }
 
-            [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-            public long Str
+            protected override System.Configuration.ConfigurationElement CreateNewElement()
             {
-                get
-                {
-                    return ((long)(this["str"]));
-                }
-                set
-                {
-                    this["str"] = value;
-                }
+                return new ItemElement();
             }
 
-            [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-            public long Acc
+            protected override object GetElementKey(System.Configuration.ConfigurationElement element)
             {
-                get
-                {
-                    return ((long)(this["acc"]));
-                }
-                set
-                {
-                    this["acc"] = value;
-                }
+                return ((ItemElement) (element)).Name;
             }
 
-            [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-            public long Crt
+            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
             {
-                get
-                {
-                    return ((long)(this["crt"]));
-                }
-                set
-                {
-                    this["crt"] = value;
-                }
-            }
 
-            [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-            public long Det
-            {
-                get
+                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
+                public string Name
                 {
-                    return ((long)(this["det"]));
+                    get { return ((string) (this["name"])); }
+                    set { this["name"] = value; }
                 }
-                set
-                {
-                    this["det"] = value;
-                }
-            }
 
-            [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-            public long Sks
-            {
-                get
+                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
+                public long Str
                 {
-                    return ((long)(this["sks"]));
+                    get { return ((long) (this["str"])); }
+                    set { this["str"] = value; }
                 }
-                set
+
+                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
+                public long Acc
                 {
-                    this["sks"] = value;
+                    get { return ((long) (this["acc"])); }
+                    set { this["acc"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
+                public long Crt
+                {
+                    get { return ((long) (this["crt"])); }
+                    set { this["crt"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
+                public long Det
+                {
+                    get { return ((long) (this["det"])); }
+                    set { this["det"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
+                public long Sks
+                {
+                    get { return ((long) (this["sks"])); }
+                    set { this["sks"] = value; }
                 }
             }
         }
-    }
 
-    public sealed partial class FeetElementCollection : System.Configuration.ConfigurationElementCollection
-    {
-
-        public ItemElement this[int i]
+        public sealed partial class RightRingElementCollection : System.Configuration.ConfigurationElementCollection
         {
-            get
+
+            public ItemElement this[int i]
             {
-                return ((ItemElement)(this.BaseGet(i)));
+                get { return ((ItemElement) (this.BaseGet(i))); }
+            }
+
+            protected override System.Configuration.ConfigurationElement CreateNewElement()
+            {
+                return new ItemElement();
+            }
+
+            protected override object GetElementKey(System.Configuration.ConfigurationElement element)
+            {
+                return ((ItemElement) (element)).Name;
+            }
+
+            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+            {
+
+                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
+                public string Name
+                {
+                    get { return ((string) (this["name"])); }
+                    set { this["name"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
+                public long Str
+                {
+                    get { return ((long) (this["str"])); }
+                    set { this["str"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
+                public long Acc
+                {
+                    get { return ((long) (this["acc"])); }
+                    set { this["acc"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
+                public long Crt
+                {
+                    get { return ((long) (this["crt"])); }
+                    set { this["crt"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
+                public long Det
+                {
+                    get { return ((long) (this["det"])); }
+                    set { this["det"] = value; }
+                }
+
+                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
+                public long Sks
+                {
+                    get { return ((long) (this["sks"])); }
+                    set { this["sks"] = value; }
+                }
             }
         }
 
-        protected override System.Configuration.ConfigurationElement CreateNewElement()
-        {
-            return new ItemElement();
-        }
-
-        protected override object GetElementKey(System.Configuration.ConfigurationElement element)
-        {
-            return ((ItemElement)(element)).Name;
-        }
-
-        public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+        public sealed partial class FoodElementCollection : System.Configuration.ConfigurationElementCollection
         {
 
-            [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-            public string Name
+            public ItemElement this[int i]
             {
-                get
-                {
-                    return ((string)(this["name"]));
-                }
-                set
-                {
-                    this["name"] = value;
-                }
+                get { return ((ItemElement) (this.BaseGet(i))); }
             }
 
-            [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-            public long Str
+            protected override System.Configuration.ConfigurationElement CreateNewElement()
             {
-                get
-                {
-                    return ((long)(this["str"]));
-                }
-                set
-                {
-                    this["str"] = value;
-                }
+                return new ItemElement();
             }
 
-            [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-            public long Acc
+            protected override object GetElementKey(System.Configuration.ConfigurationElement element)
             {
-                get
-                {
-                    return ((long)(this["acc"]));
-                }
-                set
-                {
-                    this["acc"] = value;
-                }
+                return ((ItemElement) (element)).Name;
             }
 
-            [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-            public long Crt
+            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
             {
-                get
-                {
-                    return ((long)(this["crt"]));
-                }
-                set
-                {
-                    this["crt"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-            public long Det
-            {
-                get
-                {
-                    return ((long)(this["det"]));
-                }
-                set
-                {
-                    this["det"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-            public long Sks
-            {
-                get
-                {
-                    return ((long)(this["sks"]));
-                }
-                set
-                {
-                    this["sks"] = value;
-                }
-            }
-        }
-    }
-
-    public sealed partial class OffHandElement : System.Configuration.ConfigurationElement
-    {
-
-        [System.Configuration.ConfigurationProperty("item")]
-        public ItemElement Item
-        {
-            get
-            {
-                return ((ItemElement)(this["item"]));
-            }
-        }
-
-        public sealed partial class ItemElement : System.Configuration.ConfigurationElement
-        {
-
-            [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-            public string Name
-            {
-                get
-                {
-                    return ((string)(this["name"]));
-                }
-                set
-                {
-                    this["name"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-            public long Str
-            {
-                get
-                {
-                    return ((long)(this["str"]));
-                }
-                set
-                {
-                    this["str"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-            public long Acc
-            {
-                get
-                {
-                    return ((long)(this["acc"]));
-                }
-                set
-                {
-                    this["acc"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-            public long Crt
-            {
-                get
-                {
-                    return ((long)(this["crt"]));
-                }
-                set
-                {
-                    this["crt"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-            public long Det
-            {
-                get
-                {
-                    return ((long)(this["det"]));
-                }
-                set
-                {
-                    this["det"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-            public long Sks
-            {
-                get
-                {
-                    return ((long)(this["sks"]));
-                }
-                set
-                {
-                    this["sks"] = value;
-                }
-            }
-        }
-    }
-
-    public sealed partial class NeckElementCollection : System.Configuration.ConfigurationElementCollection
-    {
-
-        public ItemElement this[int i]
-        {
-            get
-            {
-                return ((ItemElement)(this.BaseGet(i)));
-            }
-        }
-
-        protected override System.Configuration.ConfigurationElement CreateNewElement()
-        {
-            return new ItemElement();
-        }
-
-        protected override object GetElementKey(System.Configuration.ConfigurationElement element)
-        {
-            return ((ItemElement)(element)).Name;
-        }
-
-        public sealed partial class ItemElement : System.Configuration.ConfigurationElement
-        {
-
-            [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-            public string Name
-            {
-                get
-                {
-                    return ((string)(this["name"]));
-                }
-                set
-                {
-                    this["name"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-            public long Str
-            {
-                get
-                {
-                    return ((long)(this["str"]));
-                }
-                set
-                {
-                    this["str"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-            public long Acc
-            {
-                get
-                {
-                    return ((long)(this["acc"]));
-                }
-                set
-                {
-                    this["acc"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-            public long Crt
-            {
-                get
-                {
-                    return ((long)(this["crt"]));
-                }
-                set
-                {
-                    this["crt"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-            public long Det
-            {
-                get
-                {
-                    return ((long)(this["det"]));
-                }
-                set
-                {
-                    this["det"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-            public long Sks
-            {
-                get
-                {
-                    return ((long)(this["sks"]));
-                }
-                set
-                {
-                    this["sks"] = value;
-                }
-            }
-        }
-    }
-
-    public sealed partial class EarsElementCollection : System.Configuration.ConfigurationElementCollection
-    {
-
-        public ItemElement this[int i]
-        {
-            get
-            {
-                return ((ItemElement)(this.BaseGet(i)));
-            }
-        }
-
-        protected override System.Configuration.ConfigurationElement CreateNewElement()
-        {
-            return new ItemElement();
-        }
-
-        protected override object GetElementKey(System.Configuration.ConfigurationElement element)
-        {
-            return ((ItemElement)(element)).Name;
-        }
-
-        public sealed partial class ItemElement : System.Configuration.ConfigurationElement
-        {
-
-            [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-            public string Name
-            {
-                get
-                {
-                    return ((string)(this["name"]));
-                }
-                set
-                {
-                    this["name"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-            public long Str
-            {
-                get
-                {
-                    return ((long)(this["str"]));
-                }
-                set
-                {
-                    this["str"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-            public long Acc
-            {
-                get
-                {
-                    return ((long)(this["acc"]));
-                }
-                set
-                {
-                    this["acc"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-            public long Crt
-            {
-                get
-                {
-                    return ((long)(this["crt"]));
-                }
-                set
-                {
-                    this["crt"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-            public long Det
-            {
-                get
-                {
-                    return ((long)(this["det"]));
-                }
-                set
-                {
-                    this["det"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-            public long Sks
-            {
-                get
-                {
-                    return ((long)(this["sks"]));
-                }
-                set
-                {
-                    this["sks"] = value;
-                }
-            }
-        }
-    }
-
-    public sealed partial class WristsElementCollection : System.Configuration.ConfigurationElementCollection
-    {
-
-        public ItemElement this[int i]
-        {
-            get
-            {
-                return ((ItemElement)(this.BaseGet(i)));
-            }
-        }
-
-        protected override System.Configuration.ConfigurationElement CreateNewElement()
-        {
-            return new ItemElement();
-        }
-
-        protected override object GetElementKey(System.Configuration.ConfigurationElement element)
-        {
-            return ((ItemElement)(element)).Name;
-        }
-
-        public sealed partial class ItemElement : System.Configuration.ConfigurationElement
-        {
-
-            [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-            public string Name
-            {
-                get
-                {
-                    return ((string)(this["name"]));
-                }
-                set
-                {
-                    this["name"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-            public long Str
-            {
-                get
-                {
-                    return ((long)(this["str"]));
-                }
-                set
-                {
-                    this["str"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-            public long Acc
-            {
-                get
-                {
-                    return ((long)(this["acc"]));
-                }
-                set
-                {
-                    this["acc"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-            public long Crt
-            {
-                get
-                {
-                    return ((long)(this["crt"]));
-                }
-                set
-                {
-                    this["crt"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-            public long Det
-            {
-                get
-                {
-                    return ((long)(this["det"]));
-                }
-                set
-                {
-                    this["det"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-            public long Sks
-            {
-                get
-                {
-                    return ((long)(this["sks"]));
-                }
-                set
-                {
-                    this["sks"] = value;
-                }
-            }
-        }
-    }
-
-    public sealed partial class RingsElementCollection : System.Configuration.ConfigurationElementCollection
-    {
-
-        public ItemElement this[int i]
-        {
-            get
-            {
-                return ((ItemElement)(this.BaseGet(i)));
-            }
-        }
-
-        protected override System.Configuration.ConfigurationElement CreateNewElement()
-        {
-            return new ItemElement();
-        }
-
-        protected override object GetElementKey(System.Configuration.ConfigurationElement element)
-        {
-            return ((ItemElement)(element)).Name;
-        }
-
-        public sealed partial class ItemElement : System.Configuration.ConfigurationElement
-        {
 
-            [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-            public string Name
-            {
-                get
+                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
+                public string Name
                 {
-                    return ((string)(this["name"]));
+                    get { return ((string) (this["name"])); }
+                    set { this["name"] = value; }
                 }
-                set
-                {
-                    this["name"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-            public long Str
-            {
-                get
-                {
-                    return ((long)(this["str"]));
-                }
-                set
-                {
-                    this["str"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-            public long Acc
-            {
-                get
-                {
-                    return ((long)(this["acc"]));
-                }
-                set
-                {
-                    this["acc"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-            public long Crt
-            {
-                get
-                {
-                    return ((long)(this["crt"]));
-                }
-                set
-                {
-                    this["crt"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-            public long Det
-            {
-                get
-                {
-                    return ((long)(this["det"]));
-                }
-                set
-                {
-                    this["det"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-            public long Sks
-            {
-                get
-                {
-                    return ((long)(this["sks"]));
-                }
-                set
-                {
-                    this["sks"] = value;
-                }
-            }
-        }
-    }
-
-    public sealed partial class FoodElementCollection : System.Configuration.ConfigurationElementCollection
-    {
-
-        public ItemElement this[int i]
-        {
-            get
-            {
-                return ((ItemElement)(this.BaseGet(i)));
-            }
-        }
-
-        protected override System.Configuration.ConfigurationElement CreateNewElement()
-        {
-            return new ItemElement();
-        }
-
-        protected override object GetElementKey(System.Configuration.ConfigurationElement element)
-        {
-            return ((ItemElement)(element)).Name;
-        }
-
-        public sealed partial class ItemElement : System.Configuration.ConfigurationElement
-        {
 
-            [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-            public string Name
-            {
-                get
-                {
-                    return ((string)(this["name"]));
-                }
-                set
-                {
-                    this["name"] = value;
-                }
-            }
-
-            [System.Configuration.ConfigurationProperty("accModifier", IsRequired = true)]
-            public double AccModifier
-            {
-                get
-                {
-                    return ((double)(this["accModifier"]));
-                }
-                set
+                [System.Configuration.ConfigurationProperty("accModifier", IsRequired = true)]
+                public double AccModifier
                 {
-                    this["accModifier"] = value;
+                    get { return ((double) (this["accModifier"])); }
+                    set { this["accModifier"] = value; }
                 }
-            }
 
-            [System.Configuration.ConfigurationProperty("maxAccBonus", IsRequired = true)]
-            public long MaxAccBonus
-            {
-                get
+                [System.Configuration.ConfigurationProperty("maxAccBonus", IsRequired = true)]
+                public long MaxAccBonus
                 {
-                    return ((long)(this["maxAccBonus"]));
+                    get { return ((long) (this["maxAccBonus"])); }
+                    set { this["maxAccBonus"] = value; }
                 }
-                set
-                {
-                    this["maxAccBonus"] = value;
-                }
-            }
 
-            [System.Configuration.ConfigurationProperty("crtModifier", IsRequired = true)]
-            public double CrtModifier
-            {
-                get
-                {
-                    return ((double)(this["crtModifier"]));
-                }
-                set
+                [System.Configuration.ConfigurationProperty("crtModifier", IsRequired = true)]
+                public double CrtModifier
                 {
-                    this["crtModifier"] = value;
+                    get { return ((double) (this["crtModifier"])); }
+                    set { this["crtModifier"] = value; }
                 }
-            }
 
-            [System.Configuration.ConfigurationProperty("maxCrtBonus", IsRequired = true)]
-            public long MaxCrtBonus
-            {
-                get
-                {
-                    return ((long)(this["maxCrtBonus"]));
-                }
-                set
+                [System.Configuration.ConfigurationProperty("maxCrtBonus", IsRequired = true)]
+                public long MaxCrtBonus
                 {
-                    this["maxCrtBonus"] = value;
+                    get { return ((long) (this["maxCrtBonus"])); }
+                    set { this["maxCrtBonus"] = value; }
                 }
-            }
 
-            [System.Configuration.ConfigurationProperty("detModifier", IsRequired = true)]
-            public double DetModifier
-            {
-                get
-                {
-                    return ((double)(this["detModifier"]));
-                }
-                set
+                [System.Configuration.ConfigurationProperty("detModifier", IsRequired = true)]
+                public double DetModifier
                 {
-                    this["detModifier"] = value;
+                    get { return ((double) (this["detModifier"])); }
+                    set { this["detModifier"] = value; }
                 }
-            }
 
-            [System.Configuration.ConfigurationProperty("maxDetBonus", IsRequired = true)]
-            public long MaxDetBonus
-            {
-                get
-                {
-                    return ((long)(this["maxDetBonus"]));
-                }
-                set
+                [System.Configuration.ConfigurationProperty("maxDetBonus", IsRequired = true)]
+                public long MaxDetBonus
                 {
-                    this["maxDetBonus"] = value;
+                    get { return ((long) (this["maxDetBonus"])); }
+                    set { this["maxDetBonus"] = value; }
                 }
-            }
 
-            [System.Configuration.ConfigurationProperty("sksModifier", IsRequired = true)]
-            public double SksModifier
-            {
-                get
+                [System.Configuration.ConfigurationProperty("sksModifier", IsRequired = true)]
+                public double SksModifier
                 {
-                    return ((double)(this["sksModifier"]));
+                    get { return ((double) (this["sksModifier"])); }
+                    set { this["sksModifier"] = value; }
                 }
-                set
-                {
-                    this["sksModifier"] = value;
-                }
-            }
 
-            [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-            public long Sks
-            {
-                get
-                {
-                    return ((long)(this["sks"]));
-                }
-                set
+                [System.Configuration.ConfigurationProperty("maxSksBonus", IsRequired = true)]
+                public long MaxSksBonus
                 {
-                    this["sks"] = value;
+                    get { return ((long) (this["maxSksBonus"])); }
+                    set { this["maxSksBonus"] = value; }
                 }
             }
         }

@@ -1,4 +1,6 @@
-﻿namespace DragoonSimulator.Formulas
+﻿using System;
+
+namespace DragoonSimulator.Formulas
 {
     public static class FormulaLibrary
     {
@@ -9,17 +11,17 @@
 
         public static double AutoAttack(double aaDmg, double str, double det, double aaDelay, double multiplier)
         {
-            return ((aaDmg / 33.04 + 1) * (str / 6.92) * (det / 6715 + 1) * multiplier) - (1.5 * aaDelay);
+            return ((aaDmg / 34 + 1) * (str / 6.8) * (det / 6795 + 1) * multiplier) - 1;
         }
 
         public static double SkillSpeedMultiplier(double sks)
         {
-            return (1 + (sks - 354) * 0.0000724);
+            return ((sks - 354)/7722 + 1);
         }
 
         public static double Gcd(double sks)
         {
-            return 2.50256 - (0.01 * (sks - 354) / 26.5);
+            return 2.50245 - ((sks - 354) * 0.0003776);
         }
 
         public static double CritChance(double crt)
@@ -30,6 +32,60 @@
         public static double CritDmg(double crt)
         {
             return ((crt - 354) / (858 * 5)) + 1.45;
+        }
+
+        public static int GetSkillSpeedRank(double sks)
+        {
+            if (sks < 487)
+            {
+                return 1;
+            }
+            if (sks < 489)
+            {
+                return 2;
+            }
+            if (sks < 497)
+            {
+                return 3;
+            }
+            if (sks < 516)
+            {
+                return 4;
+            }
+            if (sks < 542)
+            {
+                return 5;
+            }
+            if (sks < 556)
+            {
+                return 6;
+            }
+            if (sks < 564)
+            {
+                return 7;
+            }
+            if (sks < 577)
+            {
+                return 8;
+            }
+            if (sks < 579)
+            {
+                return 9;
+            }
+            if (sks < 587)
+            {
+                return 11; // These two values are inverted due to some magic in how the game works.
+            }
+            if (sks < 601)
+            {
+                return 10; // These two values are inverted due to some magic in how the game works.
+            }
+            if (sks < 627)
+            {
+                return 12;
+            }
+
+            throw new Exception("Outside of accepted SKS range.");
         }
     }
 }

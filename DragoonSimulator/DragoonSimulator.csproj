@@ -48,6 +48,7 @@
     <Compile Include="Configuration\Inventory.cs" />
     <Compile Include="Entities\Actor.cs" />
     <Compile Include="Entities\Player.cs" />
+    <Compile Include="Entities\RecordedDPS.cs" />
     <Compile Include="Factories\PlayerFactory.cs" />
     <Compile Include="Factories\StrikingDummyFactory.cs" />
     <Compile Include="FFXIVConcepts\EffectSnapshot.cs" />
