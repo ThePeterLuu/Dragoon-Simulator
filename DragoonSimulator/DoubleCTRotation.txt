@@ -45,8 +45,8 @@ PH
 ID
 LEG
 DIS
-IR
 BOTD
+IR
 CT
 LS
 PS
