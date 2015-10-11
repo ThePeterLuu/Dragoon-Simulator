@@ -14,7 +14,7 @@ namespace DragoonSimulator
     public class Game
     {
         private static long _currentGameTime;
-        private static readonly int EncounterLengthMs = (int)TimeSpan.FromSeconds(191).TotalMilliseconds;
+        private static readonly int EncounterLengthMs = (int)TimeSpan.FromSeconds(Convert.ToInt32(ConfigurationManager.AppSettings["EncounterLengthSeconds"])).TotalMilliseconds;
         
         public static void Main()
         {
