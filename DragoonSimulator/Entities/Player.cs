@@ -131,7 +131,8 @@ namespace DragoonSimulator.Entities
         {
             if (GcdDuration <= 0)
             {
-                throw new Exception($"Warning! Using off-gcd ability { spell } when GCD is available! Remaining cooldown on { spell }: { Cooldowns[spell]}");
+                var remainingCd = Cooldowns.ContainsKey(spell) ? Cooldowns[spell] : 0;
+                throw new Exception($"Warning! Using off-gcd ability { spell } when GCD is available! Remaining cooldown on { spell }: { remainingCd }");
             }
 
             if (Cooldowns.ContainsKey(spell) || QueuedEffects.ContainsKey(Skills.StatusEffects.AnimationLocked))
