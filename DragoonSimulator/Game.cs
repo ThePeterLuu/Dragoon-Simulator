@@ -62,30 +62,48 @@ namespace DragoonSimulator
 
             var recordedRuns = new List<RecordedDPS>();
 
+            // Read and filter inventory.
+            var weaponItems = FilterWeapons(Inventory.Config.MainHand.Cast<InventorySection.MainHandElementCollection.ItemElement>().ToList());
+            var headItems = FilterItems<InventorySection.HeadElementCollection.ItemElement>(Inventory.Config.Head.Cast<InventorySection.HeadElementCollection.ItemElement>().ToList());
+            var bodyItems = FilterItems<InventorySection.BodyElementCollection.ItemElement>(Inventory.Config.Body.Cast<InventorySection.BodyElementCollection.ItemElement>().ToList());
+            var handItems = FilterItems<InventorySection.HandsElementCollection.ItemElement>(Inventory.Config.Hands.Cast<InventorySection.HandsElementCollection.ItemElement>().ToList());
+            var waistItems = FilterItems<InventorySection.WaistElementCollection.ItemElement>(Inventory.Config.Waist.Cast<InventorySection.WaistElementCollection.ItemElement>().ToList());
+            var legItems = FilterItems<InventorySection.LegsElementCollection.ItemElement>(Inventory.Config.Legs.Cast<InventorySection.LegsElementCollection.ItemElement>().ToList());
+            var feetItems = FilterItems<InventorySection.FeetElementCollection.ItemElement>(Inventory.Config.Feet.Cast<InventorySection.FeetElementCollection.ItemElement>().ToList());
+            var neckItems = FilterItems<InventorySection.NeckElementCollection.ItemElement>(Inventory.Config.Neck.Cast<InventorySection.NeckElementCollection.ItemElement>().ToList());
+            var earItems = FilterItems<InventorySection.EarsElementCollection.ItemElement>(Inventory.Config.Ears.Cast<InventorySection.EarsElementCollection.ItemElement>().ToList());
+            var wristItems = FilterItems<InventorySection.WristsElementCollection.ItemElement>(Inventory.Config.Wrists.Cast<InventorySection.WristsElementCollection.ItemElement>().ToList());
+
+            // We don't filter rings or food because they're a little different than just stat sticks. Rings are unique and food boost stats by percentages.
+            
+            var leftRingItems = Inventory.Config.LeftRing.Cast<InventorySection.LeftRingElementCollection.ItemElement>().ToList();
+            var rightRingItems = Inventory.Config.RightRing.Cast<InventorySection.RightRingElementCollection.ItemElement>().ToList();
+            var foodItems = Inventory.Config.Food.Cast<InventorySection.FoodElementCollection.ItemElement>().ToList();
+
             // for all combinations
-            foreach (InventorySection.MainHandElementCollection.ItemElement weapon in Inventory.Config.MainHand)
+            foreach (var weapon in weaponItems)
             {
-                foreach (InventorySection.HeadElementCollection.ItemElement head in Inventory.Config.Head)
+                foreach (var head in headItems)
                 {
-                    foreach (InventorySection.BodyElementCollection.ItemElement body in Inventory.Config.Body)
+                    foreach (var body in bodyItems)
                     {
-                        foreach (InventorySection.HandsElementCollection.ItemElement hands in Inventory.Config.Hands)
+                        foreach (var hands in handItems)
                         {
-                            foreach (InventorySection.WaistElementCollection.ItemElement waist in Inventory.Config.Waist)
+                            foreach (var waist in waistItems)
                             {
-                                foreach (InventorySection.LegsElementCollection.ItemElement legs in Inventory.Config.Legs)
+                                foreach (var legs in legItems)
                                 {
-                                    foreach (InventorySection.FeetElementCollection.ItemElement feet in Inventory.Config.Feet)
+                                    foreach (var feet in feetItems)
                                     {
-                                        foreach (InventorySection.NeckElementCollection.ItemElement neck in Inventory.Config.Neck)
+                                        foreach (var neck in neckItems)
                                         {
-                                            foreach (InventorySection.EarsElementCollection.ItemElement ears in Inventory.Config.Ears)
+                                            foreach (var ears in earItems)
                                             {
-                                                foreach (InventorySection.WristsElementCollection.ItemElement wrists in Inventory.Config.Wrists)
+                                                foreach (var wrists in wristItems)
                                                 {
-                                                    foreach (InventorySection.LeftRingElementCollection.ItemElement leftRing in Inventory.Config.LeftRing)
+                                                    foreach (var leftRing in leftRingItems)
                                                     {
-                                                        foreach (InventorySection.RightRingElementCollection.ItemElement rightRing in Inventory.Config.RightRing)
+                                                        foreach (var rightRing in rightRingItems)
                                                         {
                                                             // rings are unique
                                                             if (rightRing.Name.Equals(leftRing.Name,
@@ -93,7 +111,7 @@ namespace DragoonSimulator
                                                             {
                                                                 continue;
                                                             }
-                                                            foreach (InventorySection.FoodElementCollection.ItemElement food in Inventory.Config.Food)
+                                                            foreach (var food in foodItems)
                                                             {
                                                                 var player = PlayerFactory.CreatePlayer(true);
                                                                 // add weapon
@@ -403,6 +421,53 @@ namespace DragoonSimulator
             }
         }
 
+        private static IList<T> FilterItems<T>(IEnumerable<Item> items) where T : Item
+        {
+            var filteredList = new List<T>();
+
+            // ReSharper disable once LoopCanBePartlyConvertedToQuery
+            foreach (var item in items)
+            {
+                if (filteredList.Any(i => i.Name.Equals(item.Name, StringComparison.InvariantCultureIgnoreCase)))
+                {
+                    continue;
+                }
+
+                if (filteredList.Any(i => i.Str >= item.Str && i.Crt >= item.Crt && i.Det >= item.Det && i.Sks == item.Sks))
+                {
+                    continue;
+                }
+
+                filteredList.Add((T)item);
+            }
+
+            return filteredList;
+        }
+
+        private static IList<InventorySection.MainHandElementCollection.ItemElement> FilterWeapons(IEnumerable<InventorySection.MainHandElementCollection.ItemElement> items)
+        {
+            var filteredList = new List<InventorySection.MainHandElementCollection.ItemElement>();
+
+            // ReSharper disable once LoopCanBePartlyConvertedToQuery
+            foreach (var item in items)
+            {
+                if (filteredList.Any(i => i.Name.Equals(item.Name, StringComparison.InvariantCultureIgnoreCase)))
+                {
+                    continue;
+                }
+
+                if (filteredList.Any(i => i.Wd >= item.Wd && i.Aa >= item.Aa && i.Delay <= item.Delay &&
+                    i.Str >= item.Str && i.Crt >= item.Crt && i.Det >= item.Det && i.Sks == item.Sks))
+                {
+                    continue;
+                }
+
+                filteredList.Add(item);
+            }
+
+            return filteredList;
+        }
+        
         private static string FormatTimespan(TimeSpan timespan)
         {
             var minutes = timespan.Minutes.ToString();

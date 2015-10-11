@@ -29,6 +29,51 @@ namespace DragoonSimulator.Configuration
         }
     }
 
+    public abstract class Item : System.Configuration.ConfigurationElement
+    {
+        [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
+        public string Name
+        {
+            get { return ((string)(this["name"])); }
+            set { this["name"] = value; }
+        }
+
+        [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
+        public long Str
+        {
+            get { return ((long)(this["str"])); }
+            set { this["str"] = value; }
+        }
+
+        [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
+        public long Acc
+        {
+            get { return ((long)(this["acc"])); }
+            set { this["acc"] = value; }
+        }
+
+        [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
+        public long Crt
+        {
+            get { return ((long)(this["crt"])); }
+            set { this["crt"] = value; }
+        }
+
+        [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
+        public long Det
+        {
+            get { return ((long)(this["det"])); }
+            set { this["det"] = value; }
+        }
+
+        [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
+        public long Sks
+        {
+            get { return ((long)(this["sks"])); }
+            set { this["sks"] = value; }
+        }
+    }
+
     public sealed partial class InventorySection : System.Configuration.ConfigurationSection
     {
 
@@ -137,7 +182,6 @@ namespace DragoonSimulator.Configuration
 
         public sealed partial class MainHandElementCollection : System.Configuration.ConfigurationElementCollection
         {
-
             public ItemElement this[int i]
             {
                 get { return ((ItemElement) (this.BaseGet(i))); }
@@ -153,16 +197,8 @@ namespace DragoonSimulator.Configuration
                 return ((ItemElement) (element)).Name;
             }
 
-            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+            public sealed partial class ItemElement : Item
             {
-
-                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-                public string Name
-                {
-                    get { return ((string) (this["name"])); }
-                    set { this["name"] = value; }
-                }
-
                 [System.Configuration.ConfigurationProperty("wd", IsRequired = true)]
                 public double Wd
                 {
@@ -182,41 +218,6 @@ namespace DragoonSimulator.Configuration
                 {
                     get { return ((double) (this["delay"])); }
                     set { this["delay"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-                public long Str
-                {
-                    get { return ((long) (this["str"])); }
-                    set { this["str"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-                public long Acc
-                {
-                    get { return ((long) (this["acc"])); }
-                    set { this["acc"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-                public long Crt
-                {
-                    get { return ((long) (this["crt"])); }
-                    set { this["crt"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-                public long Det
-                {
-                    get { return ((long) (this["det"])); }
-                    set { this["det"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-                public long Sks
-                {
-                    get { return ((long) (this["sks"])); }
-                    set { this["sks"] = value; }
                 }
             }
         }
@@ -239,50 +240,8 @@ namespace DragoonSimulator.Configuration
                 return ((ItemElement) (element)).Name;
             }
 
-            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+            public sealed partial class ItemElement : Item
             {
-
-                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-                public string Name
-                {
-                    get { return ((string) (this["name"])); }
-                    set { this["name"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-                public long Str
-                {
-                    get { return ((long) (this["str"])); }
-                    set { this["str"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-                public long Acc
-                {
-                    get { return ((long) (this["acc"])); }
-                    set { this["acc"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-                public long Crt
-                {
-                    get { return ((long) (this["crt"])); }
-                    set { this["crt"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-                public long Det
-                {
-                    get { return ((long) (this["det"])); }
-                    set { this["det"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-                public long Sks
-                {
-                    get { return ((long) (this["sks"])); }
-                    set { this["sks"] = value; }
-                }
             }
         }
 
@@ -304,56 +263,13 @@ namespace DragoonSimulator.Configuration
                 return ((ItemElement) (element)).Name;
             }
 
-            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+            public sealed partial class ItemElement : Item
             {
-
-                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-                public string Name
-                {
-                    get { return ((string) (this["name"])); }
-                    set { this["name"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-                public long Str
-                {
-                    get { return ((long) (this["str"])); }
-                    set { this["str"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-                public long Acc
-                {
-                    get { return ((long) (this["acc"])); }
-                    set { this["acc"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-                public long Crt
-                {
-                    get { return ((long) (this["crt"])); }
-                    set { this["crt"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-                public long Det
-                {
-                    get { return ((long) (this["det"])); }
-                    set { this["det"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-                public long Sks
-                {
-                    get { return ((long) (this["sks"])); }
-                    set { this["sks"] = value; }
-                }
             }
         }
 
         public sealed partial class HandsElementCollection : System.Configuration.ConfigurationElementCollection
         {
-
             public ItemElement this[int i]
             {
                 get { return ((ItemElement) (this.BaseGet(i))); }
@@ -369,50 +285,8 @@ namespace DragoonSimulator.Configuration
                 return ((ItemElement) (element)).Name;
             }
 
-            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+            public sealed partial class ItemElement : Item
             {
-
-                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-                public string Name
-                {
-                    get { return ((string) (this["name"])); }
-                    set { this["name"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-                public long Str
-                {
-                    get { return ((long) (this["str"])); }
-                    set { this["str"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-                public long Acc
-                {
-                    get { return ((long) (this["acc"])); }
-                    set { this["acc"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-                public long Crt
-                {
-                    get { return ((long) (this["crt"])); }
-                    set { this["crt"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-                public long Det
-                {
-                    get { return ((long) (this["det"])); }
-                    set { this["det"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-                public long Sks
-                {
-                    get { return ((long) (this["sks"])); }
-                    set { this["sks"] = value; }
-                }
             }
         }
 
@@ -434,50 +308,8 @@ namespace DragoonSimulator.Configuration
                 return ((ItemElement) (element)).Name;
             }
 
-            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+            public sealed partial class ItemElement : Item
             {
-
-                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-                public string Name
-                {
-                    get { return ((string) (this["name"])); }
-                    set { this["name"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-                public long Str
-                {
-                    get { return ((long) (this["str"])); }
-                    set { this["str"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-                public long Acc
-                {
-                    get { return ((long) (this["acc"])); }
-                    set { this["acc"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-                public long Crt
-                {
-                    get { return ((long) (this["crt"])); }
-                    set { this["crt"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-                public long Det
-                {
-                    get { return ((long) (this["det"])); }
-                    set { this["det"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-                public long Sks
-                {
-                    get { return ((long) (this["sks"])); }
-                    set { this["sks"] = value; }
-                }
             }
         }
 
@@ -499,50 +331,8 @@ namespace DragoonSimulator.Configuration
                 return ((ItemElement) (element)).Name;
             }
 
-            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+            public sealed partial class ItemElement : Item
             {
-
-                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-                public string Name
-                {
-                    get { return ((string) (this["name"])); }
-                    set { this["name"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-                public long Str
-                {
-                    get { return ((long) (this["str"])); }
-                    set { this["str"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-                public long Acc
-                {
-                    get { return ((long) (this["acc"])); }
-                    set { this["acc"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-                public long Crt
-                {
-                    get { return ((long) (this["crt"])); }
-                    set { this["crt"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-                public long Det
-                {
-                    get { return ((long) (this["det"])); }
-                    set { this["det"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-                public long Sks
-                {
-                    get { return ((long) (this["sks"])); }
-                    set { this["sks"] = value; }
-                }
             }
         }
 
@@ -564,106 +354,21 @@ namespace DragoonSimulator.Configuration
                 return ((ItemElement) (element)).Name;
             }
 
-            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+            public sealed partial class ItemElement : Item
             {
-
-                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-                public string Name
-                {
-                    get { return ((string) (this["name"])); }
-                    set { this["name"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-                public long Str
-                {
-                    get { return ((long) (this["str"])); }
-                    set { this["str"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-                public long Acc
-                {
-                    get { return ((long) (this["acc"])); }
-                    set { this["acc"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-                public long Crt
-                {
-                    get { return ((long) (this["crt"])); }
-                    set { this["crt"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-                public long Det
-                {
-                    get { return ((long) (this["det"])); }
-                    set { this["det"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-                public long Sks
-                {
-                    get { return ((long) (this["sks"])); }
-                    set { this["sks"] = value; }
-                }
             }
         }
 
         public sealed partial class OffHandElement : System.Configuration.ConfigurationElement
         {
-
             [System.Configuration.ConfigurationProperty("item")]
             public ItemElement Item
             {
                 get { return ((ItemElement) (this["item"])); }
             }
 
-            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+            public sealed partial class ItemElement : Item
             {
-
-                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-                public string Name
-                {
-                    get { return ((string) (this["name"])); }
-                    set { this["name"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-                public long Str
-                {
-                    get { return ((long) (this["str"])); }
-                    set { this["str"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-                public long Acc
-                {
-                    get { return ((long) (this["acc"])); }
-                    set { this["acc"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-                public long Crt
-                {
-                    get { return ((long) (this["crt"])); }
-                    set { this["crt"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-                public long Det
-                {
-                    get { return ((long) (this["det"])); }
-                    set { this["det"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-                public long Sks
-                {
-                    get { return ((long) (this["sks"])); }
-                    set { this["sks"] = value; }
-                }
             }
         }
 
@@ -685,50 +390,8 @@ namespace DragoonSimulator.Configuration
                 return ((ItemElement) (element)).Name;
             }
 
-            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+            public sealed partial class ItemElement : Item
             {
-
-                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-                public string Name
-                {
-                    get { return ((string) (this["name"])); }
-                    set { this["name"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-                public long Str
-                {
-                    get { return ((long) (this["str"])); }
-                    set { this["str"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-                public long Acc
-                {
-                    get { return ((long) (this["acc"])); }
-                    set { this["acc"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-                public long Crt
-                {
-                    get { return ((long) (this["crt"])); }
-                    set { this["crt"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-                public long Det
-                {
-                    get { return ((long) (this["det"])); }
-                    set { this["det"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-                public long Sks
-                {
-                    get { return ((long) (this["sks"])); }
-                    set { this["sks"] = value; }
-                }
             }
         }
 
@@ -750,50 +413,8 @@ namespace DragoonSimulator.Configuration
                 return ((ItemElement) (element)).Name;
             }
 
-            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+            public sealed partial class ItemElement : Item
             {
-
-                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-                public string Name
-                {
-                    get { return ((string) (this["name"])); }
-                    set { this["name"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-                public long Str
-                {
-                    get { return ((long) (this["str"])); }
-                    set { this["str"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-                public long Acc
-                {
-                    get { return ((long) (this["acc"])); }
-                    set { this["acc"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-                public long Crt
-                {
-                    get { return ((long) (this["crt"])); }
-                    set { this["crt"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-                public long Det
-                {
-                    get { return ((long) (this["det"])); }
-                    set { this["det"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-                public long Sks
-                {
-                    get { return ((long) (this["sks"])); }
-                    set { this["sks"] = value; }
-                }
             }
         }
 
@@ -815,50 +436,8 @@ namespace DragoonSimulator.Configuration
                 return ((ItemElement) (element)).Name;
             }
 
-            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+            public sealed partial class ItemElement : Item
             {
-
-                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-                public string Name
-                {
-                    get { return ((string) (this["name"])); }
-                    set { this["name"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-                public long Str
-                {
-                    get { return ((long) (this["str"])); }
-                    set { this["str"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-                public long Acc
-                {
-                    get { return ((long) (this["acc"])); }
-                    set { this["acc"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-                public long Crt
-                {
-                    get { return ((long) (this["crt"])); }
-                    set { this["crt"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-                public long Det
-                {
-                    get { return ((long) (this["det"])); }
-                    set { this["det"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-                public long Sks
-                {
-                    get { return ((long) (this["sks"])); }
-                    set { this["sks"] = value; }
-                }
             }
         }
 
@@ -880,50 +459,8 @@ namespace DragoonSimulator.Configuration
                 return ((ItemElement) (element)).Name;
             }
 
-            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+            public sealed partial class ItemElement : Item
             {
-
-                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-                public string Name
-                {
-                    get { return ((string) (this["name"])); }
-                    set { this["name"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-                public long Str
-                {
-                    get { return ((long) (this["str"])); }
-                    set { this["str"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-                public long Acc
-                {
-                    get { return ((long) (this["acc"])); }
-                    set { this["acc"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-                public long Crt
-                {
-                    get { return ((long) (this["crt"])); }
-                    set { this["crt"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-                public long Det
-                {
-                    get { return ((long) (this["det"])); }
-                    set { this["det"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-                public long Sks
-                {
-                    get { return ((long) (this["sks"])); }
-                    set { this["sks"] = value; }
-                }
             }
         }
 
@@ -945,50 +482,8 @@ namespace DragoonSimulator.Configuration
                 return ((ItemElement) (element)).Name;
             }
 
-            public sealed partial class ItemElement : System.Configuration.ConfigurationElement
+            public sealed partial class ItemElement : Item
             {
-
-                [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
-                public string Name
-                {
-                    get { return ((string) (this["name"])); }
-                    set { this["name"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("str", IsRequired = true)]
-                public long Str
-                {
-                    get { return ((long) (this["str"])); }
-                    set { this["str"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("acc", IsRequired = true)]
-                public long Acc
-                {
-                    get { return ((long) (this["acc"])); }
-                    set { this["acc"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("crt", IsRequired = true)]
-                public long Crt
-                {
-                    get { return ((long) (this["crt"])); }
-                    set { this["crt"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("det", IsRequired = true)]
-                public long Det
-                {
-                    get { return ((long) (this["det"])); }
-                    set { this["det"] = value; }
-                }
-
-                [System.Configuration.ConfigurationProperty("sks", IsRequired = true)]
-                public long Sks
-                {
-                    get { return ((long) (this["sks"])); }
-                    set { this["sks"] = value; }
-                }
             }
         }
 
@@ -1012,7 +507,6 @@ namespace DragoonSimulator.Configuration
 
             public sealed partial class ItemElement : System.Configuration.ConfigurationElement
             {
-
                 [System.Configuration.ConfigurationProperty("name", IsRequired = true)]
                 public string Name
                 {
