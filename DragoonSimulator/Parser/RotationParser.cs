@@ -9,6 +9,7 @@ namespace DragoonSimulator.Parser
     {
         private static string[] _loadedRotation;
         private static int _currentAbility;
+        private static readonly bool LoopRotationInfinitely = Convert.ToBoolean(ConfigurationManager.AppSettings["LoopRotationInfinitely"]);
 
         public static void LoadRotation(int sks)
         {
@@ -30,7 +31,7 @@ namespace DragoonSimulator.Parser
 
             _currentAbility++;
 
-            if (_currentAbility == _loadedRotation.Length)
+            if (_currentAbility == _loadedRotation.Length && LoopRotationInfinitely)
             {
                 _currentAbility = 0;
             }
