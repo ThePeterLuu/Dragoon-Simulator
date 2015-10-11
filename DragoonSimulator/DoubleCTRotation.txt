@@ -1,5 +1,4 @@
-﻿--OPENER
-HT
+﻿HT
 BL
 B4B
 ID
@@ -21,7 +20,6 @@ LEG
 GK
 CT
 4TH
---ROTATION
 HT
 TT
 VT

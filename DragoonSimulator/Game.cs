@@ -49,7 +49,6 @@ namespace DragoonSimulator
         private static void ResetValues()
         {
             _currentGameTime = 0;
-            RotationParser.Reset();
         }
 
         private static void RunBestInSlotSolver()
@@ -310,6 +309,7 @@ namespace DragoonSimulator
             actors.Add(player);
             actors.Add(strikingDummy);
 
+            RotationParser.LoadRotation((int)player.Sks);
             var selectedAbility = RotationParser.SelectFirstAbility();
 
             while (_currentGameTime < EncounterLengthMs)

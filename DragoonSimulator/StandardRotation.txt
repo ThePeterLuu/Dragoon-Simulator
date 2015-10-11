@@ -1,5 +1,4 @@
-﻿--OPENER
-HT
+﻿HT
 BL
 B4B
 ID
@@ -21,7 +20,6 @@ LS
 GK
 FT
 4TH
---ROTATION
 HT
 ID
 DIS

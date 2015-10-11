@@ -7,49 +7,32 @@ namespace DragoonSimulator.Parser
 {
     public class RotationParser
     {
-        private static readonly string[] LoadedRotation = File.ReadAllLines(ConfigurationManager.AppSettings["RotationFileName"]);
-        public static bool CompletedOpener;
+        private static string[] _loadedRotation;
         private static int _currentAbility;
-        private const string OpenerMarker = "--OPENER";
-        private const string RotationMarker = "--ROTATION";
 
-        public static void Reset()
+        public static void LoadRotation(int sks)
         {
-            CompletedOpener = false;
+            _loadedRotation = File.ReadAllLines(
+                sks < 627 ? ConfigurationManager.AppSettings["StandardRotation"] :
+                ConfigurationManager.AppSettings["HigherSkillSpeedRotation"]
+                );
         }
 
         public static Enum SelectFirstAbility()
         {
-            if (!CompletedOpener)
-            {
-                _currentAbility = Array.IndexOf(LoadedRotation, OpenerMarker) + 1;
-            }
-            else
-            {
-                _currentAbility = Array.IndexOf(LoadedRotation, RotationMarker) + 1;
-            }
-            
+            _currentAbility = 0;
             return SelectNextAbility();
         }
 
         public static Enum SelectNextAbility()
         {
-            var selectedSkill = ParseAbility(LoadedRotation[_currentAbility]);
-
-            if (_currentAbility >= Array.IndexOf(LoadedRotation, RotationMarker))
-            {
-                CompletedOpener = true;
-            }
+            var selectedSkill = ParseAbility(_loadedRotation[_currentAbility]);
 
             _currentAbility++;
-            if (_currentAbility == Array.IndexOf(LoadedRotation, RotationMarker))
-            {
-                _currentAbility++;
-            }
 
-            if (_currentAbility == LoadedRotation.Length)
+            if (_currentAbility == _loadedRotation.Length)
             {
-                _currentAbility = Array.IndexOf(LoadedRotation, RotationMarker) + 1;
+                _currentAbility = 0;
             }
 
             return selectedSkill;
