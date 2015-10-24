@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using DragoonSimulator.Configuration;
 using DragoonSimulator.Entities;
@@ -8,6 +9,7 @@ using DragoonSimulator.Factories;
 using DragoonSimulator.Formulas;
 using DragoonSimulator.Parser;
 using DragoonSimulator.Skills;
+using Newtonsoft.Json;
 
 namespace DragoonSimulator
 {
@@ -20,7 +22,7 @@ namespace DragoonSimulator
         {
             while (true)
             {
-                Console.WriteLine("Press 1 to run the simulation with configured stats, 2 to run the BIS solver with configured inventory, 9 to exit.");
+                Console.WriteLine("Press 1 to run the simulation with configured stats, 2 to run the BIS solver with configured inventory, 3 to regenerate skill speed rankings (recommended after changing the rotation), 9 to exit.");
                 try
                 {
                     switch (Convert.ToInt32(Console.ReadKey().KeyChar.ToString()))
@@ -30,6 +32,9 @@ namespace DragoonSimulator
                             break;
                         case 2:
                             RunBestInSlotSolver();
+                            break;
+                        case 3:
+                            RegenerateSkillSpeedRanks();
                             break;
                         case 9:
                             Environment.Exit(0);
@@ -44,11 +49,36 @@ namespace DragoonSimulator
                     Console.WriteLine($"Exception occured: {ex}.");
                 }
             }
+            // ReSharper disable once FunctionNeverReturns
         }
 
         private static void ResetValues()
         {
             _currentGameTime = 0;
+        }
+
+        private static void RegenerateSkillSpeedRanks()
+        {
+            var minSkillSpeed = Convert.ToInt32(ConfigurationManager.AppSettings["MIN_SKS"]);
+            var maxSkillSpeed = Convert.ToInt32(ConfigurationManager.AppSettings["MAX_SKS"]);
+            Console.WriteLine($"Regenerating skill speed rankings ... values from { minSkillSpeed } to { maxSkillSpeed }. If this range is not the full range desired, please enter the full range in the program configuration.");
+
+            var skillSpeedDps = new Dictionary<int, double>();
+
+            for (var i = minSkillSpeed; i <= maxSkillSpeed; i++)
+            {
+                var player = PlayerFactory.CreatePlayer();
+                player.Sks = i;
+                var dps = RunSimulation(false, player);
+                Console.WriteLine($"Skill Speed: { i }, DPS: { dps }");
+                skillSpeedDps.Add(i, dps);
+            }
+
+            using (var filestream = File.OpenWrite(FormulaLibrary.GetSkillSpeedRanksFilePath()))
+            using (var writer = new StreamWriter(filestream))
+            {
+                writer.Write(JsonConvert.SerializeObject(skillSpeedDps));
+            }
         }
 
         private static void RunBestInSlotSolver()
@@ -186,7 +216,7 @@ namespace DragoonSimulator
                                                                                 player.Str <= recordedPlayer.Str &&
                                                                                 player.Crt <= recordedPlayer.Crt &&
                                                                                 player.Det <= recordedPlayer.Det &&
-                                                                                FormulaLibrary.GetSkillSpeedRank(player.Sks) <=
+                                                                                FormulaLibrary.GetSkillSpeedRank(player.Sks) <
                                                                                 FormulaLibrary.GetSkillSpeedRank(recordedPlayer.Sks))
                                                                             {
                                                                                 strictFilter++;
@@ -198,7 +228,7 @@ namespace DragoonSimulator
                                                                                 player.Str <= recordedPlayer.Str &&
                                                                                 player.Crt >= recordedPlayer.Crt &&
                                                                                 player.Det >= recordedPlayer.Det &&
-                                                                                FormulaLibrary.GetSkillSpeedRank(player.Sks) <=
+                                                                                FormulaLibrary.GetSkillSpeedRank(player.Sks) <
                                                                                 FormulaLibrary.GetSkillSpeedRank(recordedPlayer.Sks))
                                                                             {
                                                                                 var crtGain = player.Crt - recordedPlayer.Crt;
@@ -219,7 +249,7 @@ namespace DragoonSimulator
 
                                                                             if (player.Weapon.WeaponDamage <= recordedPlayer.Weapon.WeaponDamage &&
                                                                                 player.Str <= recordedPlayer.Str &&
-                                                                                FormulaLibrary.GetSkillSpeedRank(player.Sks) <=
+                                                                                FormulaLibrary.GetSkillSpeedRank(player.Sks) <
                                                                                 FormulaLibrary.GetSkillSpeedRank(recordedPlayer.Sks))
                                                                             {
                                                                                 if (player.Crt > recordedPlayer.Crt && player.Det < recordedPlayer.Det)
@@ -253,7 +283,7 @@ namespace DragoonSimulator
                                                                         }
                                                                     }
                                                                 }
-                                                                catch (Exception ex)
+                                                                catch (Exception)
                                                                 {
                                                                     continue;
                                                                 }

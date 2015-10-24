@@ -1,9 +1,16 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Newtonsoft.Json;
 
 namespace DragoonSimulator.Formulas
 {
     public static class FormulaLibrary
     {
+        private const string SkillSpeedRanksFilePath = "SkillSpeedRankings.txt";
+
+        private static List<KeyValuePair<int, double>> _sortedSkillSpeedRanks;
+
         public static double WeaponSkills(double potency, double weaponDamage, double str, double det, double multiplier)
         {
             return ((potency / 100) * (weaponDamage / 25 + 1) * (str / 9) * (det / 7290 + 1) * multiplier) - 1;
@@ -34,74 +41,28 @@ namespace DragoonSimulator.Formulas
             return ((crt - 354) / (858 * 5)) + 1.45;
         }
 
+        public static string GetSkillSpeedRanksFilePath()
+        {
+            return SkillSpeedRanksFilePath;
+        }
+
         public static int GetSkillSpeedRank(double sks)
         {
-            if (sks < 487)
+            if (_sortedSkillSpeedRanks == null)
             {
-                return 1;
-            }
-            if (sks < 489)
-            {
-                return 2;
-            }
-            if (sks < 497)
-            {
-                return 3;
-            }
-            if (sks < 516)
-            {
-                return 4;
-            }
-            if (sks < 542)
-            {
-                return 5;
-            }
-            if (sks < 556)
-            {
-                return 6;
-            }
-            if (sks < 564)
-            {
-                return 7;
-            }
-            if (sks < 577)
-            {
-                return 8;
-            }
-            if (sks < 579)
-            {
-                return 9;
-            }
-            if (sks < 587)
-            {
-                return 11; // These two values are inverted due to some magic in how the game works.
-            }
-            if (sks < 601)
-            {
-                return 10; // These two values are inverted due to some magic in how the game works.
-            }
-            if (sks < 632)
-            {
-                return 12;
-            }
-            if (sks < 643)
-            {
-                return 14;
-            }
-            if (sks < 651)
-            {
-                return 13;
-            }
-            if (sks < 659)
-            {
-                return 15;
-            }
-            if (sks < 670)
-            {
-                return 16;
+                _sortedSkillSpeedRanks = GetSkillSpeedRanks();
             }
 
-            throw new Exception("Outside of accepted SKS range.");
+            return _sortedSkillSpeedRanks.FindIndex(kvp => kvp.Key == (int)sks);
+        }
+
+        private static List<KeyValuePair<int, double>> GetSkillSpeedRanks()
+        {
+            using (var file = File.OpenRead(SkillSpeedRanksFilePath))
+            using (var reader = new StreamReader(file))
+            {
+                return JsonConvert.DeserializeObject<Dictionary<int, double>>(reader.ReadToEnd()).OrderBy(kvp => kvp.Value).ToList();
+            }
         }
     }
 }
