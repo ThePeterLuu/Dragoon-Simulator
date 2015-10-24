@@ -70,9 +70,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="HigherSkillSpeedRotation.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="StandardRotation.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

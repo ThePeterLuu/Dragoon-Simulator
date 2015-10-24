@@ -13,10 +13,7 @@ namespace DragoonSimulator.Parser
 
         public static void LoadRotation(int sks)
         {
-            _loadedRotation = File.ReadAllLines(
-                sks < 627 ? ConfigurationManager.AppSettings["StandardRotation"] :
-                ConfigurationManager.AppSettings["HigherSkillSpeedRotation"]
-                );
+            _loadedRotation = File.ReadAllLines(ConfigurationManager.AppSettings["StandardRotation"]);
         }
 
         public static Enum SelectFirstAbility()
