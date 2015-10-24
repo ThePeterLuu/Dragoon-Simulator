@@ -13,6 +13,7 @@
         SpineshatterDive,
         PowerSurge,
         BloodOfTheDragon,
-        Geirskogul
+        Geirskogul,
+        Delay
     }
 }

@@ -30,7 +30,8 @@ namespace DragoonSimulator.Skills
             { Spells.SpineshatterDive, 60 },
             { Spells.PowerSurge, 60 },
             { Spells.BloodOfTheDragon, 60 },
-            { Spells.Geirskogul, 10 }
+            { Spells.Geirskogul, 10 },
+            { Spells.Delay, 0 }
         };
 
         private static readonly List<Spells> DamageSpells = new List<Spells>
@@ -49,7 +50,8 @@ namespace DragoonSimulator.Skills
             Spells.LifeSurge,
             Spells.StrengthPotion,
             Spells.PowerSurge,
-            Spells.BloodOfTheDragon
+            Spells.BloodOfTheDragon,
+            Spells.Delay
         };
 
         public static bool IsDamageSpell(Spells spell)
@@ -116,6 +118,9 @@ namespace DragoonSimulator.Skills
                     player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.33).TotalMilliseconds, Target = player });
                     break;
                 case Spells.Geirskogul:
+                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.33).TotalMilliseconds, Target = player });
+                    break;
+                case Spells.Delay:
                     player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.33).TotalMilliseconds, Target = player });
                     break;
                 default:

@@ -85,6 +85,8 @@ namespace DragoonSimulator.Parser
                     return WeaponSkills.SharperFangAndClaw;
                 case "GK":
                     return Spells.Geirskogul;
+                case "DELAY":
+                    return Spells.Delay;
                 default:
                     throw new Exception($"Unrecognized ability: { ability }");
             }
