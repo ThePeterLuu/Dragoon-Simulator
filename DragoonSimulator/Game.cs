@@ -216,7 +216,7 @@ namespace DragoonSimulator
                                                                                 player.Str <= recordedPlayer.Str &&
                                                                                 player.Crt <= recordedPlayer.Crt &&
                                                                                 player.Det <= recordedPlayer.Det &&
-                                                                                FormulaLibrary.GetSkillSpeedRank(player.Sks) <
+                                                                                FormulaLibrary.GetSkillSpeedRank(player.Sks) <=
                                                                                 FormulaLibrary.GetSkillSpeedRank(recordedPlayer.Sks))
                                                                             {
                                                                                 strictFilter++;
@@ -228,7 +228,7 @@ namespace DragoonSimulator
                                                                                 player.Str <= recordedPlayer.Str &&
                                                                                 player.Crt >= recordedPlayer.Crt &&
                                                                                 player.Det >= recordedPlayer.Det &&
-                                                                                FormulaLibrary.GetSkillSpeedRank(player.Sks) <
+                                                                                FormulaLibrary.GetSkillSpeedRank(player.Sks) <=
                                                                                 FormulaLibrary.GetSkillSpeedRank(recordedPlayer.Sks))
                                                                             {
                                                                                 var crtGain = player.Crt - recordedPlayer.Crt;
@@ -249,7 +249,7 @@ namespace DragoonSimulator
 
                                                                             if (player.Weapon.WeaponDamage <= recordedPlayer.Weapon.WeaponDamage &&
                                                                                 player.Str <= recordedPlayer.Str &&
-                                                                                FormulaLibrary.GetSkillSpeedRank(player.Sks) <
+                                                                                FormulaLibrary.GetSkillSpeedRank(player.Sks) <=
                                                                                 FormulaLibrary.GetSkillSpeedRank(recordedPlayer.Sks))
                                                                             {
                                                                                 if (player.Crt > recordedPlayer.Crt && player.Det < recordedPlayer.Det)
@@ -338,6 +338,11 @@ namespace DragoonSimulator
                 Console.WriteLine($"Crt: {run.Player.Crt}");
                 Console.WriteLine($"Det: {run.Player.Det}");
                 Console.WriteLine($"Sks: {run.Player.Sks}");
+
+                if (counter > 250)
+                {
+                    break;
+                }
             }
 
             Console.WriteLine("Diagnostics: ");

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
@@ -9,7 +10,7 @@ namespace DragoonSimulator.Formulas
     {
         private const string SkillSpeedRanksFilePath = "SkillSpeedRankings.txt";
 
-        private static List<KeyValuePair<int, double>> _sortedSkillSpeedRanks;
+        private static IDictionary<int, int> _sortedSkillSpeedRanks;
 
         public static double WeaponSkills(double potency, double weaponDamage, double str, double det, double multiplier)
         {
@@ -53,15 +54,34 @@ namespace DragoonSimulator.Formulas
                 _sortedSkillSpeedRanks = GetSkillSpeedRanks();
             }
 
-            return _sortedSkillSpeedRanks.FindIndex(kvp => kvp.Key == (int)sks);
+            return _sortedSkillSpeedRanks[(int)sks];
         }
 
-        private static List<KeyValuePair<int, double>> GetSkillSpeedRanks()
+        private static IDictionary<int, int> GetSkillSpeedRanks()
         {
             using (var file = File.OpenRead(SkillSpeedRanksFilePath))
             using (var reader = new StreamReader(file))
             {
-                return JsonConvert.DeserializeObject<Dictionary<int, double>>(reader.ReadToEnd()).OrderBy(kvp => kvp.Value).ToList();
+                var result = new Dictionary<int, int>();
+                var sksToDPS = JsonConvert.DeserializeObject<Dictionary<int, double>>(reader.ReadToEnd());
+                var orderedSksToDPS = sksToDPS
+                    .ToDictionary(mapping => mapping.Key, mapping => (int)mapping.Value)
+                    .OrderBy(kvp => kvp.Value).ToList();
+
+                var currentRank = 0;
+                var lastDPSValue = 0;
+                foreach (var pair in orderedSksToDPS)
+                {
+                    if (pair.Value > lastDPSValue)
+                    {
+                        currentRank++;
+                        lastDPSValue = pair.Value;
+                    }
+
+                    result.Add(pair.Key, currentRank);
+                }
+
+                return result;
             }
         }
     }
