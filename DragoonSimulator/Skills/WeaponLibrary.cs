@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using DragoonSimulator.Entities;
 using DragoonSimulator.FFXIVConcepts;
-using DragoonSimulator.Formulas;
 
 namespace DragoonSimulator.Skills
 {
@@ -67,17 +66,17 @@ namespace DragoonSimulator.Skills
 
         public static void QueueEffect(Player player, StrikingDummy strikingDummy, WeaponSkills weaponSkill)
         {
-            player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.33).TotalMilliseconds, Target = player });
+            player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = Game.GetGlobalAnimationLockDurationMs(), Target = player });
 
             switch (weaponSkill)
             {
                 case WeaponSkills.HeavyThrust:
-                    player.QueuedEffects.Add(StatusEffects.HeavyThrust, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.5).TotalMilliseconds, Target = player });
+                    player.QueuedEffects.Add(StatusEffects.HeavyThrust, new EffectSnapshot { Duration = 1289, Target = player });
                     break;
                 case WeaponSkills.Disembowel:
                     if (player.LastSkills.Peek() == WeaponSkills.ImpulseDrive)
                     {
-                        strikingDummy.QueuedEffects.Add(StatusEffects.Disembowel, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.75).TotalMilliseconds, Target = strikingDummy });
+                        strikingDummy.QueuedEffects.Add(StatusEffects.Disembowel, new EffectSnapshot { Duration = 1651, Target = strikingDummy });
                     }
                     break;
                 case WeaponSkills.ChaosThrust:
@@ -86,7 +85,7 @@ namespace DragoonSimulator.Skills
                     {
                         strikingDummy.QueuedEffects.Add(StatusEffects.ChaosThrust, new EffectSnapshot
                         {
-                            Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.5).TotalMilliseconds,
+                            Duration = 1651,
                             CritChance = player.CalculateCritChance(),
                             Crt = player.Crt,
                             Det = player.Det,
@@ -102,7 +101,7 @@ namespace DragoonSimulator.Skills
                 case WeaponSkills.Phlebotomize:
                     strikingDummy.QueuedEffects.Add(StatusEffects.Phlebotomize, new EffectSnapshot
                     {
-                        Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.5).TotalMilliseconds,
+                        Duration = 1111,
                         CritChance = player.CalculateCritChance(),
                         Crt = player.Crt,
                         Det = player.Det,

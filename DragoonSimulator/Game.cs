@@ -17,7 +17,8 @@ namespace DragoonSimulator
     {
         private static long _currentGameTime;
         private static readonly int EncounterLengthMs = (int)TimeSpan.FromSeconds(Convert.ToInt32(ConfigurationManager.AppSettings["EncounterLengthSeconds"])).TotalMilliseconds;
-        
+        private static readonly long GlobalAnimationLockMs = Convert.ToInt64(ConfigurationManager.AppSettings["GlobalAnimationLockMs"]);
+
         public static void Main()
         {
             while (true)
@@ -533,6 +534,11 @@ namespace DragoonSimulator
         public static long GetCurrentGameTime()
         {
             return _currentGameTime;
+        }
+
+        public static long GetGlobalAnimationLockDurationMs()
+        {
+            return GlobalAnimationLockMs;
         }
     }
 }

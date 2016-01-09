@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using DragoonSimulator.Entities;
 using DragoonSimulator.FFXIVConcepts;
-using DragoonSimulator.Formulas;
 
 namespace DragoonSimulator.Skills
 {
@@ -78,50 +77,50 @@ namespace DragoonSimulator.Skills
             switch (spell)
             {
                 case Spells.LegSweep:
-                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot{ Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.33).TotalMilliseconds, Target = player });
+                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot{ Duration = Game.GetGlobalAnimationLockDurationMs(), Target = player });
                     break;
                 case Spells.BattleLitany:
-                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.33).TotalMilliseconds, Target = player });
-                    player.QueuedEffects.Add(StatusEffects.BattleLitany, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.33).TotalMilliseconds, Target = player });
+                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = Game.GetGlobalAnimationLockDurationMs(), Target = player });
+                    player.QueuedEffects.Add(StatusEffects.BattleLitany, new EffectSnapshot { Duration = 710, Target = player });
                     break;
                 case Spells.InternalRelease:
-                    player.QueuedEffects.Add(StatusEffects.InternalRelease, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.33).TotalMilliseconds, Target = player });
-                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.33).TotalMilliseconds, Target = player });
+                    player.QueuedEffects.Add(StatusEffects.InternalRelease, new EffectSnapshot { Duration = 710, Target = player });
+                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = Game.GetGlobalAnimationLockDurationMs(), Target = player });
                     break;
                 case Spells.BloodForBlood:
-                    player.QueuedEffects.Add(StatusEffects.BloodForBlood, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.33).TotalMilliseconds, Target = player });
-                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.33).TotalMilliseconds, Target = player });
+                    player.QueuedEffects.Add(StatusEffects.BloodForBlood, new EffectSnapshot { Duration = 710, Target = player });
+                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = Game.GetGlobalAnimationLockDurationMs(), Target = player });
                     break;
                 case Spells.LifeSurge:
-                    player.QueuedEffects.Add(StatusEffects.LifeSurge, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.33).TotalMilliseconds, Target = player });
-                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.33).TotalMilliseconds, Target = player });
+                    player.QueuedEffects.Add(StatusEffects.LifeSurge, new EffectSnapshot { Duration = 710, Target = player });
+                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = Game.GetGlobalAnimationLockDurationMs(), Target = player });
                     break;
                 case Spells.PowerSurge:
-                    player.QueuedEffects.Add(StatusEffects.PowerSurge, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.33).TotalMilliseconds, Target = player });
-                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.33).TotalMilliseconds, Target = player });
+                    player.QueuedEffects.Add(StatusEffects.PowerSurge, new EffectSnapshot { Duration = 710, Target = player });
+                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = Game.GetGlobalAnimationLockDurationMs(), Target = player });
                     break;
                 case Spells.StrengthPotion:
-                    player.QueuedEffects.Add(StatusEffects.StrengthPotion, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.33).TotalMilliseconds, Target = player });
-                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.60).TotalMilliseconds, Target = player });
+                    player.QueuedEffects.Add(StatusEffects.StrengthPotion, new EffectSnapshot { Duration = 918, Target = player });
+                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = 1285, Target = player });
                     break;
                 case Spells.DragonfireDive:
-                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.60).TotalMilliseconds, Target = player });
+                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = 1285, Target = player });
                     break;
                 case Spells.Jump:
-                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.60).TotalMilliseconds, Target = player });
+                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = 1285, Target = player });
                     break;
                 case Spells.SpineshatterDive:
-                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.60).TotalMilliseconds, Target = player });
+                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = 1285, Target = player });
                     break;
                 case Spells.BloodOfTheDragon:
-                    player.QueuedEffects.Add(StatusEffects.BloodOfTheDragon, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.33).TotalMilliseconds, Target = player });
-                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.33).TotalMilliseconds, Target = player });
+                    player.QueuedEffects.Add(StatusEffects.BloodOfTheDragon, new EffectSnapshot { Duration = 710, Target = player });
+                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = Game.GetGlobalAnimationLockDurationMs(), Target = player });
                     break;
                 case Spells.Geirskogul:
-                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.33).TotalMilliseconds, Target = player });
+                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = Game.GetGlobalAnimationLockDurationMs(), Target = player });
                     break;
                 case Spells.Delay:
-                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = (long)TimeSpan.FromSeconds(FormulaLibrary.Gcd(player.Sks) * 0.33).TotalMilliseconds, Target = player });
+                    player.QueuedEffects.Add(StatusEffects.AnimationLocked, new EffectSnapshot { Duration = Game.GetGlobalAnimationLockDurationMs(), Target = player });
                     break;
                 default:
                     throw new Exception($"Unknown spell { spell }!");
