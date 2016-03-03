@@ -112,6 +112,13 @@ namespace DragoonSimulator
             var foodItems = Inventory.Config.Food.Cast<InventorySection.FoodElementCollection.ItemElement>().ToList();
 
             // for all combinations
+            /*
+             * Note: This looks like it's pretty poor performance, but in reality we skip the vast majority of the combinations
+             * (about 99.99% or more) so it still runs in a reasonable amount of time and we are still able to check each
+             * combination of items. This is because the heuristics are tuned to reflect how the damage formulae work and combinations
+             * that are definitely suboptimal are easy to filter out.
+             *
+             */
             foreach (var weapon in weaponItems)
             {
                 foreach (var head in headItems)
